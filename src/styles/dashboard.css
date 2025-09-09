@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+    text-decoration: none;
+    list-style: none;
+    color: #222222;
+}
+
+body{
+    background-color: #FAFAFA;
+}
+
+header{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 60px;
+    font-size: 18px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+}
+
+.logo{
+    font-weight: bold;
+    color: #28A745;
+    font-size: 22px;
+}
+
+.nav-bar .itens{
+    display: flex;
+    gap: 40px;
+}
+
+.nav-bar .itens a{
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 12px;
+}
+
+.btn-add-gasto{
+    background-color:#28A745 ;
+    color: #fff; 
+    transition: background-color 0.25s ease-out;
+}
+
+.btn-add-gasto:hover{
+    background-color: #218838;
+}
+
+.btn-add-gasto i{
+    font-size: 14px;
+    color: #fff;
+
+}
+
+.user #user_icon{
+    font-size: 25px;
+    color: #28A745;
+}
+
+/* main */
+
+.tabela {
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    background-color: #fff;
+}
+
+.tabela table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.tabela thead th {
+  background-color: #f7f7f7; 
+  font-weight: bold; 
+  color: #28A745;
+}
+.th-actions {
+  width: 100px;
+}
+
+.th-actions,
+.td-actions{
+    text-align: center;
+}
+
+.btn-actions{
+    display: flex;
+    justify-content: space-evenly
+}
+
+.btn-action{
+    border:none;
+    background-color: transparent;
+}
+
+.btn-action i{
+    color: #28A745;
+    font-size: 17px;
+    cursor: pointer;
+    transition: color 0.25s ease-out;
+}
+
+.tabela th:hover,
+.tabela td:hover{
+    background-color: #F0F0F0;
+}
+
+.btn-actions .btn-action:hover i{
+    color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-actions .btn-action:hover{
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+
+/*Styles que servem para mais de uma view*/
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+    text-decoration: none;
+    list-style: none;
+    color: #222222;
+}
+
+body{
+  background-color: #f7f7f7; 
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.form-group .input_data{
+    border-radius: 12px;
+    padding: 7px 14px;
+    font-size: 15px;
+    background-color: oklch(92.3% 0.003 48.717);
+    border: 3px solid #DDDDDD;
+}
+
+.form-group .input_data:focus{
+    border-color:#28A745;
+    outline: none;
+}
+
+.form-group ::placeholder{
+    color:#777;
+}
+
+/*View Login*/
+.login-area{
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: #FFFFFF;
+   border-radius: 13px;
+   box-shadow:0 8px 24px rgba(0, 0, 0, 0.08);
+   padding:40px 50px 40px 50px;
+}
+
+.login-area .text h2{
+    font-size: 35px;
+    
+}
+
+.formulario-login{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.formulario .form-group label[for="senha"]{
+    margin-top: 10px;
+}
+
+
+.formulario-login .btn-entrar{
+    display: flex;
+    justify-content: center; /* centraliza o conteúdo dentro da div */
+    margin-top: 25px;
+}
+
+.btn-entrar button {
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 18px;
+    background-color:#28A745 ;
+    color:#FFFFFF;
+    border: 1px solid #DDDDDD;
+    width: 160px;
+    transition: background-color 0.25s ease-out;
+}
+
+.btn-entrar button:hover{
+    background-color: #218838;
+
+}
+
+.createAccount{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    
+}
+.createAccount span{
+    text-decoration: underline;
+    text-decoration-color:#28A745 ;
+    text-decoration-thickness: 2px;
+}
+.titulo-login {
+    color: #333; 
+    font-family: sans-serif; 
+    display: inline-block; 
+    position: relative; /* Essencial para posicionar o sublinhado em relação ao texto */
+    padding-bottom: 8px; /* Cria um espaço entre o texto e o sublinhado */
+}
+
+.titulo-login::after {
+    content: ''; /* Obrigatório para o pseudo-elemento funcionar */
+    position: absolute; /* Posiciona o sublinhado em relação ao h2 */
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 3px;
+    background: linear-gradient(to right, #28A745, #52BE80); 
+}
+
+/* Style do cadastro */
+
+.cadastro-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.cadastro-area{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border-radius: 13px;
+    box-shadow:0 8px 24px rgba(0, 0, 0, 0.08);
+    padding:40px 60px 40px 60px;
+}
+
+.text-cadastro{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.text-cadastro a{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 7px 4px 7px 4px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 18px;
+    background-color:#28A745 ;
+    color:#FFFFFF;
+    border: 1px solid #DDDDDD;
+    width: 100px;
+    text-align: center;
+}
+
+.titulo-cadastro {
+    color: #333; 
+    font-family: sans-serif; 
+    display: inline-block; 
+    position: relative; /* Essencial para posicionar o sublinhado em relação ao texto */
+    padding-bottom: 8px; /* Cria um espaço entre o texto e o sublinhado */
+    font-size: 35px;
+    
+}
+
+.titulo-cadastro::after {
+    content: ''; /* Obrigatório para o pseudo-elemento funcionar */
+    position: absolute; /* Posiciona o sublinhado em relação ao h2 */
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 3px;
+    background: linear-gradient(to right, #28A745, #52BE80); 
+}
+
+
+.formulario-cadastro{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 70px;
+
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label{
+    font-size: 18px;
+}
+
+.btn-enviar-cadastro{
+    display: grid;
+    grid-column:span 2;
+    justify-content: center;
+}
+
+.btn-enviar-cadastro button{
+    padding: 7px 4px 7px 4px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 18px;
+    background-color:#28A745 ;
+    color:#FFFFFF;
+    border: 1px solid #DDDDDD;
+    width: 100px;
+    text-align: center;
+    min-width: 100vh;
+    transition: background-color 0.25s ease-out;
+}
+
+.btn-enviar-cadastro button:hover{
+      background-color: #218838;
+}
+
+/* 
+#dc2626 - vermelho
+#22c55e - verde */
+
+/* 1. Estilo base da mensagem de erro/sucesso */
+.mensagem-erro {
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 500;
+
+    /* COMEÇA ESCONDIDO por padrão */
+    display: none;
+}
+
+/* 2. Classe para TORNAR a mensagem VISÍVEL */
+.mensagem-erro.visivel {
+    display: block;
+}
+
+/* 3. Estilo para quando a mensagem for de ERRO (sua classe .invalid) */
+.mensagem-erro.invalid {
+    color: #dc2626; /* Vermelho */
+}
+
+/* 4. Estilo para quando a mensagem for de SUCESSO (sua classe .valid) */
+.mensagem-erro.valid {
+    color: #22c55e; /* Verde */
+}
+
+
+/* --- Estilos para o Campo de Entrada (<input>) --- */
+
+/* 1. Estilo para quando o input for INVÁLIDO */
+.form-group .input_data.invalid {
+    border: 2px solid #dc2626;
+}
+
+/* 2. Estilo para quando o input for VÁLIDO */
+.form-group .input_data.valid {
+    border: 2px solid #22c55e;
+}
+
+
+
+
+
