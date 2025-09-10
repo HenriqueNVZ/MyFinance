@@ -19,7 +19,6 @@ class Database {
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
         } catch (PDOException $erro) {
-            // Em um ambiente de produção, registre o erro, não o exiba.
             throw new Exception('Erro na conexão: ' . $erro->getMessage());
         }
     }

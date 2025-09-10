@@ -1,0 +1,45 @@
+<?php
+    //O UserModel irá receber e preparas os dados do usuario para envia-los ao BaseModel
+    require_once 'BaseModel';
+    class userModel extends BaseModel{
+        
+        protected $tableName = 'usuarios';
+
+        //DUVIDA MINHA - VALIDAÇÕES SEPARADAS EM FUNÇoes?
+        //Este método principal receberia todos os dados do formulário e faria as verificações.
+        public function validateData(){
+            
+        }
+
+        //Verifica se já existe um Usuario com email,para evitar mais de um usuario com mesmo email
+        public function isEmailUnique()(){
+
+        }
+
+        public function hashPassword(){
+
+        }
+
+
+        //Um método que faria a limpeza dos dados (ex: remover espaços em branco, formatar o celula
+        public function prepareData(){
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+?>
