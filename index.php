@@ -28,4 +28,5 @@ $router->registerGet('/register', function() use ($loginController) {
     
 // Resolver a rota
 $router->resolve();
+
 ?>

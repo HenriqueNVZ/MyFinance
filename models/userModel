@@ -7,7 +7,7 @@
         
         protected $tableName = 'usuarios';
         private $pdo;
-
+        
         public function __construct($pdo) {
             $this->pdo = $pdo;
         }
@@ -114,7 +114,7 @@
             foreach($data as $key => $value){
                 $data[$key] = trim($value);
             }
-            if(!isset($data['phone_number'])){
+            if(isset($data['phone_number'])){
 
             $data['phone_number'] = preg_replace('/\D/', '', $data['phone_number']);
             }
