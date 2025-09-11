@@ -20,6 +20,11 @@ $router->registerGet('/', function() use ($loginController) {
 $router->registerGet('/login', function() use ($loginController) {
     echo $loginController->renderView('login');
 });
+
+
+$router->registerGet('/register', function() use ($loginController) {
+    echo $loginController->renderView('login');
+});
     
 // Resolver a rota
 $router->resolve();
