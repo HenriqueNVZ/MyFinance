@@ -1,5 +1,10 @@
 <?php
-    require_once __DIR__. '/../core/database.php';
+    namespace User\MyFinance\models;
+    use User\MyFinance\core\database;
+    use PDO;
+    use PDOException;
+    
+    // require_once __DIR__. '/../core/database.php';
     class BaseModel{
 
         private $pdo;
@@ -85,11 +90,11 @@
         }
         //Esta função apaga os dados de um usuario
         public function delete($id){
-            $query = ("DELET FROM {$this->tableName} WHERE id = :id");
+            $query = ("DELETE FROM {$this->tableName} WHERE id = :id");
             
             try{
                 $stmt = $this->pdo->prepare($query);
-                $stmt->execute([':id'=> $id]);
+                $stmt->execute([':id' => $id]);
 
             }catch(PDOException $e){
                 echo "Erro ao Excluir dados: " . $e->getMessage();

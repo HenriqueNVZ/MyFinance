@@ -1,0 +1,15 @@
+{
+    "name": "user/my-finance",
+    "autoload": {
+        "psr-4": {
+            "User\\MyFinance\\": "Application"
+        }
+    },
+    "authors": [
+        {
+            "name": "Henrique Novaes Gonçalves",
+            "email": "henriquehng1@gmail.com"
+        }
+    ],
+    "require": {}
+}

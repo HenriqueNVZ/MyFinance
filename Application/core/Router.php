@@ -1,16 +1,19 @@
 <?php
+    namespace User\MyFinance\core;
+    use User\MyFinance\controllers\Controller;
+
     class Router{
         protected array $routes = [];
         public Request $request;
         public Response $response;
-        public LoginController $loginController;
+        public Controller $controller;
 
         
-        public function __construct(Request $request, Response $response, LoginController $loginController)
+        public function __construct(Request $request, Response $response,Controller $controller)
         {
             $this->request = $request;
             $this->response = $response;
-            $this->loginController = $loginController;
+            $this->controller = $controller;
         }
 
 
@@ -45,7 +48,7 @@
             if(is_string($callback)){
                 //Se a callback for uma string significa que uma view deve ser renderizada
                 //Guardamos a view como string
-                echo $this->loginController->renderView($callback);
+                echo $this->controller->renderView($callback);
                 return;
             }
             // Caso o tipo de callback não seja suportado

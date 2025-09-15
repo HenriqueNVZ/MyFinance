@@ -1,4 +1,6 @@
 <?php
+    namespace User\MyFinance\core;
+
     class Response{
 
         public function error($code){

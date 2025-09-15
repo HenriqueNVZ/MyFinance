@@ -1,5 +1,7 @@
 <?php
-
+    namespace User\MyFinance\core;
+    use PDO;
+    use PDOException;
 class Database {
     // A propriedade $instance vai armazenar a única instância da classe.
     private static $instance = null;
@@ -19,7 +21,7 @@ class Database {
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
         } catch (PDOException $erro) {
-            throw new Exception('Erro na conexão: ' . $erro->getMessage());
+            throw new \Exception('Erro na conexão: ' . $erro->getMessage());
         }
     }
 

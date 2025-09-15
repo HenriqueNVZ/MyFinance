@@ -1,9 +1,14 @@
 <?php
+    namespace User\MyFinance\models;
+    use User\MyFinance\models\BaseModel;
+    use User\MyFinance\core\Database;
+    use PDO;
+    use PDOException;
+
     //O UserModel irá receber e preparas os dados do usuario para envia-los ao BaseModel
     //Por mais que eu tenha validações via frontend com JS,o js pode ser facilmente desabitado por isso aqui no backend será feito uma camada extra de proteção
-    require_once 'BaseModel';
-    require_once '../core/database.php';
-    class userModel extends BaseModel{
+    
+    class UserModel extends BaseModel{
         
         protected $tableName = 'usuarios';
         private $pdo;

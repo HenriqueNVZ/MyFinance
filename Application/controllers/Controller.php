@@ -1,4 +1,6 @@
 <?php
+    namespace User\MyFinance\controllers;
+
 
     class Controller{
 

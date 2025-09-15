@@ -1,4 +1,5 @@
 <?php
+    namespace User\MyFinance\controllers;
 //O UserController é a ponte que conecta a requisição do usuario com o userModel, lidando com a resposta
 require_once '../models/userModel';
 require_once  __DIR__.'/loginController';
@@ -7,7 +8,7 @@ class UserController extends Controller{
     protected $userModel;
     
     public function __construct() {
-        $response = new Response();
+        $response = new Response(); 
         $this->userModel = new UserModel($response);
     }
 

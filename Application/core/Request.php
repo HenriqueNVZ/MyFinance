@@ -1,4 +1,6 @@
 <?php
+    namespace User\MyFinance\core;
+
     //O Request vai pegar o Caminho e o método das requisições
 
     class Request{
