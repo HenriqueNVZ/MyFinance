@@ -3,7 +3,7 @@
     use User\MyFinance\core\Database;
     use User\MyFinance\core\Response;
     use User\MyFinance\models\BaseModel;
-    // use PDO;
+    use PDO;
     use PDOException;
 
     //O UserModel irá receber e preparas os dados do usuario para envia-los ao BaseModel
@@ -20,7 +20,6 @@
             $this->pdo = Database::getInstance()->getConnection();
         }
 
-        //DUVIDA MINHA - VALIDAÇÕES SEPARADAS EM FUNÇoes?
         //Este método principal receberia todos os dados do formulário e faria as verificações.
         public function createData(){
         // Pega os dados diretamente do formulário
@@ -90,6 +89,23 @@
             }
         }
 
+        //Busca dados de usuario apartir de um email
+        public function findUserByEmail($email){
+            try{
+                $query = ("SELECT * FROM usuarios WHERE email = :email");
+                $stmt = $this->pdo->prepare($query);
+                $stmt->bindParam(":email", $email);
+                $stmt->execute();
+                //Contem um array dos dados do usuario com o email passado
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $user;
+            }catch (PDOException $e) {
+                error_log('Erro ao buscar usuário por email: ' . $e->getMessage());
+                return false;
+            }
+        }
+
+        //Valida se a senha é segura
         public function isPasswordStrong($password){
             $minCaracteres =  8;
 

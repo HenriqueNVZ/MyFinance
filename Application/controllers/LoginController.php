@@ -24,7 +24,7 @@
             ];
 
             //Armazena um array com os dados do usuario e false se não existir;
-            $user = $this->userModel->findUserByEmail($loginData['email']);
+            $user = $this->UserModel->findUserByEmail($loginData['email']);
 
             //Verifica se existe um usuario com o email digitado e se a senha digitada corresponde com a senha do banco de dados
             if($user && password_verify($loginData['password'], $user['senha_hash'])){
