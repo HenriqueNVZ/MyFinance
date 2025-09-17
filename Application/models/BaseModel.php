@@ -1,6 +1,6 @@
 <?php
     namespace User\MyFinance\models;
-    use User\MyFinance\core\database;
+    use User\MyFinance\core\Database;
     use PDO;
     use PDOException;
     

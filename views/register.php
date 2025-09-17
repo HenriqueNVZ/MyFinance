@@ -12,10 +12,10 @@
             <div class="text-cadastro">
                 <h2 class="titulo-cadastro">Cadastre-se</h2>
                 
-                <a href="login.php" >Entrar</a>
+                <a href="/login" >Entrar</a>
             </div>
             
-            <form action="/register" method="POST" class="formulario-cadastro">
+            <form action="/login" method="POST" class="formulario-cadastro">
 
                 <div class="form-group">
                     <label for="first_name">Primeiro Nome</label>

@@ -1,8 +1,9 @@
 <?php
     namespace User\MyFinance\models;
-    use User\MyFinance\models\BaseModel;
     use User\MyFinance\core\Database;
-    use PDO;
+    use User\MyFinance\core\Response;
+    use User\MyFinance\models\BaseModel;
+    // use PDO;
     use PDOException;
 
     //O UserModel irá receber e preparas os dados do usuario para envia-los ao BaseModel
@@ -10,11 +11,13 @@
     
     class UserModel extends BaseModel{
         
+        protected $pdo;
         protected $tableName = 'usuarios';
-        private $pdo;
+       
         
-        public function __construct($pdo) {
-            $this->pdo = $pdo;
+        public function __construct(Response $response){
+            parent::__construct($response);
+            $this->pdo = Database::getInstance()->getConnection();
         }
 
         //DUVIDA MINHA - VALIDAÇÕES SEPARADAS EM FUNÇoes?

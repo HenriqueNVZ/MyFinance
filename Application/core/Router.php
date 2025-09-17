@@ -1,8 +1,14 @@
 <?php
+/**
+ * A classe Router gerencia o roteamento de URLs.
+ * Ela armazena as rotas para a aplicação e as executa com base na requisição do usuário.
+ */
+
     namespace User\MyFinance\core;
     use User\MyFinance\controllers\Controller;
 
     class Router{
+        //Array associativo com chave GET e POST para armazenar rotas e callbacks
         protected array $routes = [];
         public Request $request;
         public Response $response;
@@ -17,26 +23,28 @@
         }
 
 
-        //Registra requisições get no array
+        //Armazena requisições GET no Array $routes;
         public function registerGet($path,$callback){
-            //O valor para get => 'path' = $callback
+            //A path é a URL e a callback é função a ser executada essa URL é acessada
             $this->routes['get'][$path] = $callback;
         }
 
-        //Registra requisições post no array
+        //Armazena requisições POST no Array $routes;
         public function registerPost($path,$callback){
-            //O valor para post => 'path' = $callback
             $this->routes['post'][$path] = $callback;
         }
 
-        //Está função deve saber qual rota acessar e executar a callback correta
+        //Executa a Callback
         public function resolve(){
+            //Recebe a URL 
             $path = $this->request->getPath();
+            //Recebe o metodo(GET ou POST)
             $method =$this->request->getMethod();
+            //Recebe a callback
             $callback = $this->routes[$method][$path] ?? false;
 
             if($callback === false){
-                //Se a callback retornar false significa que não existe está rota
+                //Callback retornando false significa que a rota é inexistente
                 $this->response->error(404);
                 return;
             }

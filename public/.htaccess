@@ -1,5 +1,12 @@
+# Habilita o motor de reescrita de URL
 RewriteEngine On
-RewriteBase /MyFinance/
+
+# Define a base para a reescrita (a pasta onde está o projeto)
+RewriteBase /
+
+# A menos que o arquivo solicitado exista...
 RewriteCond %{REQUEST_FILENAME} !-f
+# ... e a menos que o diretório solicitado exista...
 RewriteCond %{REQUEST_FILENAME} !-d
+# ... redireciona todas as requisições para o index.php
 RewriteRule ^(.*)$ index.php [QSA,L]

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina de login</title>
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href ="/styles/style.css">
 </head>
 <body style="background-color: #E6F4EA ;">
     <div class="container">
@@ -13,7 +13,7 @@
                 <h2 class="titulo-login">Faça o seu login</h2>
             </div>
             
-            <form action="login.php" method="POST" class="formulario-login">
+            <form action="/dashboard" method="POST" class="formulario-login">
 
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -32,7 +32,7 @@
             </form>
 
             <div class="createAccount">
-                <p>Primeira vez aqui ? <a href="register.php"><span>Crie sua conta</span></a></p>
+                <p>Primeira vez aqui ? <a href="/register"><span>Crie sua conta</span></a></p>
             </div>
         </div>
     </div>

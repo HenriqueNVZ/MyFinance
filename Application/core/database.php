@@ -11,11 +11,11 @@ class Database {
 
     // O construtor é privado, impedindo a criação de novas instâncias com 'new'.força o uso do método getConnection
     private function __construct() {
-        $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
+        $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'];
         
         try {
             // A conexão é criada aqui e armazenada em $this->pdo.
-            $this->pdo = new PDO($dsn, DB_USER, DB_PASS);
+            $this->pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
             
             // Configura os atributos para lançar exceções em caso de erros.
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
