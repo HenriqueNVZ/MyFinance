@@ -17,12 +17,22 @@
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text"  name="email" class="input_data" placeholder="Digite seu email">
+                    <input 
+                        type="text"  
+                        name="email" 
+                        class="input_data" 
+                        placeholder="Digite seu email"
+                    >
                 </div>
 
                 <div class="form-group">
                     <label for="senha">Senha</label>
-                    <input type="text"  name="senha" class="input_data" placeholder="Digite sua senha">
+                    <input 
+                        type="text"  
+                        name="senha" 
+                        lass="input_data" 
+                        placeholder="Digite sua senha"
+                    >
                 </div>
 
                 <div class="btn-entrar">
