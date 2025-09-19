@@ -33,12 +33,14 @@
                         <th class="categoria">Categoria</th>
                         <th class="valor-gasto">Valor</th>
                         <th>Descrição</th>
+                        <th>Data</th>
                         <th class="th-actions">Ações</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
+                        <td>vazio</td>
                         <td>vazio</td>
                         <td>vazio</td>
                         <td>vazio</td>
@@ -56,7 +58,67 @@
                 </tbody>
             </table>
         </div>   
-
     </main>
+
+<!-- Adicionar o css e javascript para mostrar e tirar o modal -->
+    <div class="modal" id="modal_hidden">
+        <div class="title">
+            Adicionar Novo Gasto
+        </div>
+
+        <form action="\addExpense" method="POST">
+
+            <div class="form-group">
+                <label for="Valor">Valor</label>
+                
+                <input 
+                type="number"
+                name="valor"
+                placeholder="R$ 0,00"
+                id="valor"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select name="categoria" id="categoria">
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Compras">Compras</option>
+                    <option value="Outros   ">Outros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                
+                <input 
+                type="text"
+                name="description"
+                placeholder="Descrição da compra"
+                id="description"
+                >
+            </div>
+            <div class="form-group">
+                <label for="date">Data</label>
+
+                <input 
+                type="date"
+                name="date"
+                placeholder="DD/MM/AAAA"
+                id="date"
+                >
+            </div>
+
+            <button type="submit">
+                Adicionar 
+            </button>
+        </form>
+    </div>
 </body>
 </html>
