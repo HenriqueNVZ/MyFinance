@@ -6,6 +6,10 @@
 
     namespace User\MyFinance\core;
     use User\MyFinance\controllers\Controller;
+    use User\MyFinance\controllers\LoginController;
+    use User\MyFinance\controllers\UserController;
+    use User\MyFinance\Core\Request;
+    use User\MyFinance\Core\Response;
 
     class Router{
         //Array associativo com chave GET e POST para armazenar rotas e callbacks
@@ -13,13 +17,17 @@
         public Request $request;
         public Response $response;
         public Controller $controller;
+        public UserController $userController;
+        public LoginController $loginController;
 
         
-        public function __construct(Request $request, Response $response,Controller $controller)
+        public function __construct(Request $request, Response $response, Controller $controller, UserController $userController, LoginController $loginController)
         {
-            $this->request = $request;
-            $this->response = $response;
-            $this->controller = $controller;
+        $this->request = $request;
+        $this->response = $response;
+        $this->controller = $controller;
+        $this->userController = $userController;
+        $this->loginController = $loginController;
         }
 
 

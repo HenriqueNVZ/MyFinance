@@ -11,7 +11,7 @@
         protected $tableName;
 
         public function __construct($pdo) {
-            $this->pdo = $pdo;
+            $this->pdo = Database::getInstance()->getConnection();
          
         }
         
@@ -30,14 +30,13 @@
             }
         }
           
-        
-        //TALVEZ DEVESSE SER EXCLUIVA DE USUARIOSMODEL
         //Esta função busca um dado por id
         public function findById($id){
                 $query = ("SELECT * FROM {$this->tableName} WHERE id = :id");
             try{
                 $stmt = $this->pdo->prepare($query);
-                $stmt->execute(":id",$id);
+                $stmt->bindParam(":id",$id);
+                $stmt->execute();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }catch(PDOException $e){
                 echo "Erro na consulta: " . $e->getMessage();
@@ -53,20 +52,18 @@
             $columnField = implode(",",array_keys($data));
             $placeholders = ':' . implode(', :', array_keys($data));
             $query = ("INSERT INTO {$this->tableName}($columnField) VALUES ($placeholders) ");
-
+            
             try{
                 $stmt = $this->pdo->prepare($query);
-                foreach($data as $key => &$value){
-                    $stmt->bindParam(":$key", $value); 
-                }
-                $stmt->execute();
+                // foreach($data as $key => &$value){
+                //     $stmt->bindParam(":$key", $value); 
+                // }                
+                $stmt->execute($data);
             }catch(PDOException $e){
                 echo "Erro na consulta: " . $e->getMessage();
                 return false;
             }
         }
-// UPDATE usuarios SET email = :email WHERE id = :id.
-
 
         //Esta função atualiza os dados de um usuario
         public function update(int $id,array $data){

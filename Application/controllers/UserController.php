@@ -4,6 +4,7 @@
     use User\MyFinance\models\UserModel;
     use User\MyFinance\controllers\Controller;
     use User\MyFinance\core\Response;
+
 //O UserController é a ponte que conecta a requisição do usuario com o userModel, lidando com a resposta
 ;
 class UserController extends Controller{
@@ -18,18 +19,16 @@ class UserController extends Controller{
 
     public function registerUser(){
         $formData = $_POST;
+        
         //CreateData vai retornar a chave sucess ou errors
         $result = $this->userModel->createData($formData);
-        
+            
         //Se não houver a chave errors significa que não possue erros
         if(empty($result['errors'])){
-            header("location: /sucesso");
+            header("location:/login");
             exit;
         }else{
-            // Se houver erros, você pode renderizar a página de cadastro novamente e passar os erros para a view
-            echo '<pre>';
-            print_r($result['errors']);
-            echo '</pre>';
+            return $this->showRegisterForm($result['errors'], $formData);
         }
 
 

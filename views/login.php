@@ -12,8 +12,14 @@
             <div class="text">
                 <h2 class="titulo-login">Faça o seu login</h2>
             </div>
-            
-            <form action="/dashboard" method="POST" class="formulario-login">
+            <!-- action do form aponta para a rota que lida com a autenticação   -->
+            <form action="/login" method="POST" class="formulario-login">
+                
+                <?php if(isset($errors['login_error'])): ?>
+                    <div class="alert-error">
+                        <?php echo htmlspecialchars($errors['login_error']); ?>
+                    </div>
+                <?php endif;?>
 
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -30,7 +36,7 @@
                     <input 
                         type="text"  
                         name="senha" 
-                        lass="input_data" 
+                        class="input_data" 
                         placeholder="Digite sua senha"
                     >
                 </div>

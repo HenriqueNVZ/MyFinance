@@ -11,33 +11,52 @@ use User\MyFinance\core\Request;
 use User\MyFinance\core\Response;
 use User\MyFinance\controllers\Controller;
 use User\MyFinance\controllers\UserController;
+use User\MyFinance\controllers\LoginController;
 
 // Criando instâncias
 $request = new Request();
 $response = new Response();
 $controller = new Controller();
 $userController = new UserController();
-$router = new Router($request, $response, $controller,$userController);
+$loginController = new LoginController();
+$router = new Router($request,$response,$controller,$userController,$loginController);
 
-//Registro de possiveis rotas a serem acessadas 
-$router->registerGet('/', function() use ($controller) {
-    echo $controller->renderView('login');
+// ROTAS GET: Apenas exibe as páginas
+// Rota para exibir o formulário de login
+$router->registerGet('/', function() use ($loginController) {
+    echo $loginController->showLoginForm();
 });
 
-// Se acessar a path = /login o Controller renderiza a view
-$router->registerGet('/login', function() use ($controller) {
-    echo $controller->renderView('login');
+// Rota para exibir o formulário de login
+$router->registerGet('/login', function() use ($loginController) {
+    echo $loginController->showLoginForm();
 });
 
-
-
-
+//Rota para exibir o formulario de cadastro
 $router->registerGet('/register', function() use ($userController) {
-    // Agora o router chama o método showRegisterForm do UserController
     echo $userController->showRegisterForm();
 });
+
+// Rota para exibir o dashboard (a ser protegida com sessão)
+$router->registerGet('/dashboard', function() use ($controller) {
+    echo $controller->renderView('dashboard');
+});
+
+// ROTAS POST: Para processar formulários
+//Rota para processar o formulario de login ao clicar em "Entrar"
+$router->registerPost('/login', function() use ($loginController) {
+    echo $loginController->login();
+});
+
+// Rota para processar o formulário de cadastro
+$router->registerPost('/register', function() use ($userController) {
+    echo $userController->registerUser();
+});
+
+
     
-// Resolver a rota
+// Resolve a rota
 $router->resolve();
+
 
 ?>

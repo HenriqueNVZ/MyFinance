@@ -21,24 +21,37 @@
         }
 
         //Este método principal receberia todos os dados do formulário e faria as verificações.
-        public function createData(){
-        // Pega os dados diretamente do formulário
-        $data = $_POST;
+        public function createData($data){
+            // 1. Limpa os dados antes da validação
+            $data = $this->prepareData($data);
 
-        // 1. Chama o método de validação para verificar os dados
-        $errors = $this->validateData($data);
+            // 2. Chama o método de validação
+            $errors = $this->validateData($data);
 
-        // Se o array de erros estiver vazio, significa que os dados são válidos
-        if (empty($errors)) {
-            // 2. Criptografa a senha antes de salvar no banco
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            // Se o array de erros estiver vazio, significa que os dados são válidos
+            if (empty($errors)) {
+            // 3. Mapeia os dados do formulário para os nomes das colunas do banco
+            $userToSave = [
+                'first_name' => $data['first_name'] ?? '',
+                'last_name' => $data['last_name'] ?? '',
+                'email' => $data['email'] ?? '',
+                'celular' => $data['phone_number'] ?? '',
+                'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+                'data_cadastro' => date('Y-m-d H:i:s')
+            ];
             
-            // 3. Chama o método 'create' do BaseModel para salvar os dados
-            // Lembre-se, o BaseModel já faz toda a lógica de segurança e inserção
-            $this->create($data);
+            // 4. Salva no banco de dados e verifica se a operação foi um sucesso
+            // Chamamos o método create com os dados mapeados
+            $success = $this->create($userToSave);
 
+            if($success){
             // Retorna um array de sucesso
             return ['success' => true];
+            }else {
+            // Se a inserção no banco falhar, retorna um erro
+            $errors['database'] = 'Erro ao salvar o usuário no banco de dados. Tente novamente.';
+            return ['errors' => $errors];
+            }
         }
 
         // Se houver erros, retorna o array de erros
