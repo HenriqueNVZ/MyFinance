@@ -29,7 +29,7 @@
                 //Inicia uma sessão de login
                 session_start();
                 //Cria um espaço de armazeanmento de dados na superglobal,neste caso armazena o id do usuario logado;
-                $_SESSION['user'] = $user['id'];
+                $_SESSION['user_id'] = $user['id'];
                 //Direciona o usuario para o pagina de dashboard;
                 header("Location: /dashboard");
                 exit;

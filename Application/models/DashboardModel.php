@@ -8,9 +8,9 @@
         }
 
         // Método para pegar todos os gastos de um usuário
-        public function getAllUserExpenses(){
-        // A lógica de busca irá aqui
-
+        public function getExpensesByUserId($userId){
+            // A lógica de busca irá aqui
+            
         }
         // Método para criar um novo gasto
         public function createExpense(){
