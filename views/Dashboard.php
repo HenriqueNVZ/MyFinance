@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Caminho css pensando em public como raiz do projeto -->
     <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>MyFinance</title>
 </head>
@@ -62,63 +63,74 @@
 
 <!-- Adicionar o css e javascript para mostrar e tirar o modal -->
     <div class="modal" id="modal_hidden">
-        <div class="title">
-            Adicionar Novo Gasto
+        <div class="modal-content">
+            <div class="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="title">
+                Adicionar Novo Gasto
+            </div>
+
+            <form action="\addExpense" method="POST">
+
+                <div class="form-group">
+                    <label for="Valor">Valor</label>
+                    <!-- Type text mas no js valido para apenas aceitar numeros - mais bonito -->
+                    <input 
+                    type="text"
+                    name="valor"
+                    placeholder="R$ 0,00"
+                    id="valor"
+                    class="input_data" 
+
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select name="categoria" id="categoria">
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Serviços">Serviços</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Outros   ">Outros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    
+                    <input 
+                    type="text"
+                    name="description"
+                    placeholder="Descrição da compra"
+                    id="description"
+                    class="input_data" 
+
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="date">Data</label>
+
+                    <input 
+                    type="date"
+                    name="date"
+                    placeholder="DD/MM/AAAA"
+                    id="date"
+                    class="input_data" 
+                   
+                    >
+                </div>
+
+                <button type="submit" class="btn-add">
+                    Adicionar 
+                </button>
+            </form>
         </div>
-
-        <form action="\addExpense" method="POST">
-
-            <div class="form-group">
-                <label for="Valor">Valor</label>
-                
-                <input 
-                type="number"
-                name="valor"
-                placeholder="R$ 0,00"
-                id="valor"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="categoria">Categoria</label>
-                <select name="categoria" id="categoria">
-                    <option value="Alimentação">Alimentação</option>
-                    <option value="Moradia">Moradia</option>
-                    <option value="Transporte">Transporte</option>
-                    <option value="Saúde">Saúde</option>
-                    <option value="Educação">Educação</option>
-                    <option value="Lazer">Lazer</option>
-                    <option value="Serviços">Serviços</option>
-                    <option value="Compras">Compras</option>
-                    <option value="Outros   ">Outros</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Descrição</label>
-                
-                <input 
-                type="text"
-                name="description"
-                placeholder="Descrição da compra"
-                id="description"
-                >
-            </div>
-            <div class="form-group">
-                <label for="date">Data</label>
-
-                <input 
-                type="date"
-                name="date"
-                placeholder="DD/MM/AAAA"
-                id="date"
-                >
-            </div>
-
-            <button type="submit">
-                Adicionar 
-            </button>
-        </form>
     </div>
 </body>
 </html>
