@@ -19,7 +19,7 @@
                 <li><a href="#">Receitas</a></li>
                 <li><a href="#">Relatórios</a></li>
                 <li><a href="#">Resumo</a></li>
-                <li><a href="#" class="btn-add-gasto">Adicionar gasto <i class="fa-solid fa-plus"></i></a></li>
+                <li><a href="" class="btn-add-gasto">Adicionar gasto <i class="fa-solid fa-plus"></i></a></li>
             </ul>
         </nav>
         <div class="user">
@@ -62,7 +62,7 @@
     </main>
 
 <!-- Adicionar o css e javascript para mostrar e tirar o modal -->
-    <div class="modal" id="modal_hidden">
+    <div class="modal">
         <div class="modal-content">
             <div class="close">
                 <i class="fa-solid fa-xmark"></i>
@@ -132,5 +132,6 @@
             </form>
         </div>
     </div>
+    <script src="/styles/javaScript/modal.js"></script>
 </body>
 </html>

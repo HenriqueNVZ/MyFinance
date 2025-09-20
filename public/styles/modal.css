@@ -17,6 +17,10 @@
 
 }
 
+.modal.active{
+    display: flex;
+}
+
 .modal-content{
     display: flex;
     justify-content: center;
