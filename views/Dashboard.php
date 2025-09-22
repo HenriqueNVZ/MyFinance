@@ -1,3 +1,15 @@
+<?php
+//Além da verificação no método index, há a verificação na view -garantindo a segurança do dashboard em duas camadas
+
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /login');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
