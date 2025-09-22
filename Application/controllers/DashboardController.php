@@ -4,7 +4,7 @@
     use User\MyFinance\core\Response;
 
 
-
+    //addExpense pega os dados e chama createExpense, create expense chama a validação e caso tudo de certo chama create e adiciona no banco
     class DashboardController extends Controller{
         
         private $dashboardModel;
@@ -31,7 +31,7 @@
 
         // Método para processar a adição de um novo gasto (POST)
         public function addExpense(){
-            // Lógica para pegar os dados do formulário e chamar o modelo
+            // Lógica para pegar os dados do formulário e chamar o model
             session_start();
             //Pegar o user id
             $UserId = $_SESSION['user_id'] ?? false;

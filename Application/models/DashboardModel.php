@@ -32,10 +32,49 @@
                 return false;
             }
         }
-        // Método para criar um novo gasto,validando os dados 
-        public function createExpense(array $data){
+
+
+        //Valida os dados para criar um novo gasto
+        public function validateExpenseData($dataExpense){
+            $errors = [];
+            if(empty($dataExpense['valor']) || $dataExpense['valor'] < 0){
+                $errors = ['valor' => "O valor deve ser preenchido e maior que 0!" ];
+            }
+
+            if(empty($dataExpense['categoria'])){
+                $errors = ['categoria' => "A categoria é obrigatória!" ];
+
+            }
+            if(empty($dataExpense['date'])){
+                $errors = ['data' => "A data é obrigatória!"];
+
+            }
+            return $errors;
+
+        }
+
+
+
+        //cria um novo gasto
+        public function createExpense(array $dataExpense){
             // A lógica de validação e criação de gastos irá aqui.
-            
+            $errors = $this->validateExpenseData($dataExpense);
+            if(!empty($errors)){
+                return ['errors' => $errors];
+            }
+
+            $created = $this->create($dataExpense);
+
+            if($created){
+                return ['success' => true];
+            }
+            return ['errors' => ['Falha ao salvar o gasto.']];
+
+
+
+        
+
+
         }
 
 

@@ -58,7 +58,8 @@
                 // foreach($data as $key => &$value){
                 //     $stmt->bindParam(":$key", $value); 
                 // }                
-                $stmt->execute($data);
+                return $stmt->execute($data);
+                
             }catch(PDOException $e){
                 echo "Erro na consulta: " . $e->getMessage();
                 return false;
