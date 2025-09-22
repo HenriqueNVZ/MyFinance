@@ -35,10 +35,22 @@
             session_start();
             //Pegar o user id
             $UserId = $_SESSION['user_id'] ?? false;
+            //Caso não possua um usuario logado é redirecionado para login
+            if(!$UserId){
+                header("Location: /login");
+            }
             //Pega os dados do formulario de novo gasto
             $dataExpense = $_POST;
             //Adiciona no array dos dados a informação de qual é o id do usuario
             $dataExpense['user_id'] = $UserId;
+            //expense guarda o retorno de createExpense - array associativo com o resultado da operação  
+            $expense = $this->dashboardModel->createExpense($dataExpense);
+            if(isset($expense['success'])){
+                header("Location: /dashboard");
+                exit;
+            }else{
+                return $this->renderView('dashboard', ['errors' => $expense['errors'], 'formData' => $dataExpense]);
+            }
         }
     }
 ?>
