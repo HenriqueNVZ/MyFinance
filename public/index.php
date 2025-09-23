@@ -48,7 +48,7 @@ $router->registerGet('/dashboard', function() use ($dashboardController) {
 });
 
 //Rota para exibir o modal e editar o gasto
-$router->registerGet('/updateExpense{id}', function($id) use ($dashboardController) {
+$router->registerGet('/editExpense{id}', function($id) use ($dashboardController) {
     echo $dashboardController->showEditeExpenseForm($id);
 });
 
@@ -70,6 +70,10 @@ $router->registerPost('/dashboard', function() use ($dashboardController) {
 //Rota para adicionar um gasto no banco de dados
 $router->registerPost('/addExpense', function() use ($dashboardController) {
     echo $dashboardController->addExpense();
+});
+//Rota para a pagina atualizada de gastos
+$router->registerPost('/uptadeExpense{id}', function($id) use ($dashboardController) {
+    echo $dashboardController->updateExpense($id);
 });
 
 
