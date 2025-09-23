@@ -1,5 +1,4 @@
 <?php
-
 //Carrega o autoload
 require_once __DIR__.'/../vendor/autoload.php';
 // Carrega o arquivo .env, gerando a superglobal $_ENV para acessar dados de .env
@@ -12,6 +11,9 @@ use User\MyFinance\core\Response;
 use User\MyFinance\controllers\Controller;
 use User\MyFinance\controllers\UserController;
 use User\MyFinance\controllers\LoginController;
+use User\MyFinance\controllers\DashboardController;
+use User\MyFinance\models\DashboardModel;
+use User\MyFinance\Models\UserModel;
 
 // Criando instâncias
 $request = new Request();
@@ -19,7 +21,10 @@ $response = new Response();
 $controller = new Controller();
 $userController = new UserController();
 $loginController = new LoginController();
-$router = new Router($request,$response,$controller,$userController,$loginController);
+$dashboardModel = new DashboardModel($response);
+$userModel = new UserModel($response);
+$dashboardController = new DashboardController($dashboardModel);
+$router = new Router($request,$response,$controller,$userController,$loginController,$dashboardController);
 
 // ROTAS GET: Apenas exibe as páginas
 // Rota para exibir o formulário de login
@@ -38,8 +43,8 @@ $router->registerGet('/register', function() use ($userController) {
 });
 
 // Rota para exibir o dashboard (a ser protegida com sessão)
-$router->registerGet('/dashboard', function() use ($controller) {
-    echo $controller->renderView('dashboard');
+$router->registerGet('/dashboard', function() use ($dashboardController) {
+    echo $dashboardController->index();
 });
 
 // ROTAS POST: Para processar formulários
@@ -53,8 +58,16 @@ $router->registerPost('/register', function() use ($userController) {
     echo $userController->registerUser();
 });
 
+$router->registerPost('/dashboard', function() use ($dashboardController) {
+    echo $dashboardController->addExpense();
+});
 
-    
+//Rota para adicionar um gasto no banco de dados
+$router->registerPost('/addExpense', function() use ($dashboardController) {
+    echo $dashboardController->addExpense();
+});
+
+
 // Resolve a rota
 $router->resolve();
 

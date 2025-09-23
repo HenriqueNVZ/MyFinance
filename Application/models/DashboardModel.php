@@ -4,17 +4,14 @@
     use PDO;
     use PDOException;
     use User\MyFinance\core\Database;
-    use User\MyFinance\Controllers\DashboardController;
 
     class DashboardModel extends BaseModel{
         protected $pdo;
         protected $tableName = "gastos";
-        public $dashboardController;
 
-        public function __construct(Response $response, DashboardController $dashboardController) {
+        public function __construct(Response $response) {
             parent::__construct($response);
             $this->pdo = Database::getInstance()->getConnection();
-            $this->dashboardController = $dashboardController;
         }
 
         // Método para pegar todos os gastos de um usuário
@@ -53,8 +50,6 @@
 
         }
 
-
-
         //cria um novo gasto
         public function createExpense(array $dataExpense){
             // A lógica de validação e criação de gastos irá aqui.
@@ -63,25 +58,20 @@
                 return ['errors' => $errors];
             }
 
-            $created = $this->create($dataExpense);
+            $dataToSave = [
+                'user_id' => $dataExpense['user_id'],
+                'valor' => $dataExpense['valor'],
+                'categoria' => $dataExpense['categoria'],
+                'descricao' => $dataExpense['description'], 
+                'data_gasto' => $dataExpense['date']
+            ];
+
+            $created = $this->create($dataToSave);
 
             if($created){
                 return ['success' => true];
             }
             return ['errors' => ['Falha ao salvar o gasto.']];
-
-
-
-        
-
-
         }
-
-
-
-
-
-
     }
-
 ?>

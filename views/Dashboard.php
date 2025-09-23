@@ -1,7 +1,6 @@
 <?php
 //Além da verificação no método index, há a verificação na view -garantindo a segurança do dashboard em duas camadas
 
-session_start();
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
@@ -52,22 +51,33 @@ if (!isset($_SESSION['user_id'])) {
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>vazio</td>
-                        <td>vazio</td>
-                        <td>vazio</td>
-                        <td>vazio</td>
-                        <td class="td-actions">
-                            <div class="btn-actions">
-                            <button class="btn-action btn-edit">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                            <button class="btn-action btn-delete">
-                                <i class="fa-solid fa-trash-can"></i>                            
-                            </button>
-                            </div>
-                        </td>                    
-                    </tr>
+                    <?php if (isset($expenses) && is_array($expenses)): ?>
+                        <?php foreach($expenses as $expense):?>
+                            <tr>
+                                <!-- HTMLSPECIALCHARS previne ataques de injeção de código XSS -->
+                                <td> <?= htmlspecialchars($expense['categoria'])?> </td>
+                                <td> <?= htmlspecialchars($expense['valor'])?> </td>
+                                <td> <?= htmlspecialchars($expense['descricao'])?> </td>
+                                <td> <?= htmlspecialchars($expense['data_gasto']) ?></td>
+
+                                <td class="td-actions">
+                                    <div class="btn-actions">
+                                    <button class="btn-action btn-edit">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete">
+                                        <i class="fa-solid fa-trash-can"></i>                            
+                                    </button>
+                                    </div>
+                                </td>                    
+                            </tr>
+                        <?php endforeach; ?> 
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align: center;">Nenhum gasto encontrado.</td>
+                        </tr>
+                    <?php endif; ?>
+
                 </tbody>
             </table>
         </div>   
@@ -122,7 +132,6 @@ if (!isset($_SESSION['user_id'])) {
                     placeholder="Descrição da compra"
                     id="description"
                     class="input_data" 
-
                     >
                 </div>
                 <div class="form-group">

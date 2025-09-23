@@ -7,9 +7,8 @@
     //addExpense pega os dados e chama createExpense, create expense chama a validação e caso tudo de certo chama create e adiciona no banco
     class DashboardController extends Controller{
         
-        private $dashboardModel;
+        protected $dashboardModel;
         public function __construct(DashboardModel $dashboardModel) {
-            $response = new Response;
             $this->dashboardModel = $dashboardModel;
         }
 
