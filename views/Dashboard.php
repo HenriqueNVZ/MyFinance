@@ -68,7 +68,9 @@ if (!isset($_SESSION['user_id'])) {
                                         </i>
                                     </button>
                                     <button class="btn-action btn-delete">
-                                        <i class="fa-solid fa-trash-can"></i>                            
+                                        <i class="fa-solid fa-trash-can">
+                                            <a href="/deleteExpense?id=<?= $expense['id'] ?>"></a>
+                                        </i>                            
                                     </button>
                                     </div>
                                 </td>                    

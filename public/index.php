@@ -47,6 +47,11 @@ $router->registerGet('/dashboard', function() use ($dashboardController) {
     echo $dashboardController->index();
 });
 
+//Rota para exibir o modal e editar o gasto
+$router->registerGet('/updateExpense{id}', function($id) use ($dashboardController) {
+    echo $dashboardController->showEditeExpenseForm($id);
+});
+
 // ROTAS POST: Para processar formulários
 //Rota para processar o formulario de login ao clicar em "Entrar"
 $router->registerPost('/login', function() use ($loginController) {
