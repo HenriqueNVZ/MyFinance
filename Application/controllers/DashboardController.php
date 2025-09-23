@@ -51,5 +51,21 @@
                 return $this->renderView('dashboard', ['errors' => $expense['errors'], 'formData' => $dataExpense]);
             }
         }
+
+        public function showEditeExpenseForm($id){
+
+            
+            $expenseData = $this->dashboardModel->findById($id);
+            if(!$expenseData){
+                //Se nao houver dados do gasto retorna para dashboard
+                header('Location: /dashboard');
+                exit;
+            }
+            return $this->renderView('updatedExpense', [
+                'expense' => $expenseData, //variavel que será usada na view
+                'errors' => [],
+                'formData' => $expenseData // Usamos os dados do gasto para preencher o formulário
+            ]);
+        }
     }
 ?>
