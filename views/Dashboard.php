@@ -7,6 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: /login');
     exit;
 }
+
+// Verifica se a variável de dados do formulário existe para definir o modo
+$isEditing = isset($formData['id']);
+
+$formAction = $isEditing ? "/update-expense" : "/add-expense";
 ?>
 
 <!DOCTYPE html>
@@ -62,13 +67,14 @@ if (!isset($_SESSION['user_id'])) {
 
                                 <td class="td-actions">
                                     <div class="btn-actions">
-                                        <form action="/editExpense" method="POST"> 
+                                        <form action="/editExpense" method="GET"> 
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
                                             <button class="btn-action btn-edit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                         </form>
 
-                                        <form action="/deleteExpense" method="POST"> 
+                                        <form action="/deleteExpense" method="GET"> 
                                             <button class="btn-action btn-edit">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
@@ -99,8 +105,6 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
             <form action="\addExpense" method="POST">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
-
                 <div class="form-group">
                     <label for="Valor">Valor</label>
                     <!-- Type text mas no js valido para apenas aceitar numeros - mais bonito -->

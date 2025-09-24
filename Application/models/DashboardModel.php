@@ -30,7 +30,6 @@
             }
         }
 
-
         //Valida os dados para criar um novo gasto
         public function validateExpenseData($dataExpense){
             $errors = [];
@@ -73,5 +72,28 @@
             }
             return ['errors' => ['Falha ao salvar o gasto.']];
         }
+
+        public function updateExpenseData($DataEditExpense){
+            //Pega o id do array para ser passado ao método update
+            $id = $DataEditExpense['id'];
+            // Removemos o 'id' do array de dados para que ele não seja incluído na cláusula SET do SQL
+            $dataToUpdate = $DataEditExpense;
+            unset($dataToUpdate['id']);
+            //Chama a função de validação de dados
+            $errors = $this->validateExpenseData($DataEditExpense);
+            //Se nao for válida retorna um array de erros
+            if(!empty($errors)){
+                return ['errors' => $errors];
+            }
+            //Chama o método update para atualizar os dados
+            $updateSuccessful = $this->update($id,$dataToUpdate);
+            //Seder tudo certo retorna o array com success
+            if($updateSuccessful){
+                return ['success' => true];
+            }else{
+                return ['errors' => ['Falha ao atualizar os dados']];
+            }
+        }
+
     }
 ?>

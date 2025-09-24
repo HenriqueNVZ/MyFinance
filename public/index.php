@@ -49,7 +49,7 @@ $router->registerGet('/dashboard', function() use ($dashboardController) {
 
 //Rota para exibir o modal e editar o gasto
 $router->registerGet('/editExpense{id}', function($id) use ($dashboardController) {
-    echo $dashboardController->showEditeExpenseForm($id);
+    echo $dashboardController->showEditExpenseForm($id);
 });
 
 // ROTAS POST: Para processar formulários
@@ -71,10 +71,11 @@ $router->registerPost('/dashboard', function() use ($dashboardController) {
 $router->registerPost('/addExpense', function() use ($dashboardController) {
     echo $dashboardController->addExpense();
 });
-//Rota para a pagina atualizada de gastos
-$router->registerPost('/uptadeExpense{id}', function($id) use ($dashboardController) {
+//Rota para quando o usuario submete o formulario de edição dos gastos
+$router->registerPost('/updateExpense{id}', function($id) use ($dashboardController) {
     echo $dashboardController->updateExpense($id);
 });
+
 
 
 // Resolve a rota

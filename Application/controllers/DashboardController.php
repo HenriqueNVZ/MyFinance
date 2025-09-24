@@ -52,7 +52,7 @@
             }
         }
 
-        public function showEditeExpenseForm($id){
+        public function showEditExpenseForm($id){
 
             
             $expenseData = $this->dashboardModel->findById($id);
@@ -61,15 +61,32 @@
                 header('Location: /dashboard');
                 exit;
             }
-            return $this->renderView('updatedExpense', [
-                'expense' => $expenseData, //variavel que será usada na view
+            $allUserExpenses = $this->dashboardModel->getExpensesByUserId($_SESSION['user_id']);
+
+            return $this->renderView('dashboard', [
+                'expenses' => $allUserExpenses,
+                'expense_to_edit' => $expenseData, //variavel que será usada na view
                 'errors' => [],
                 'formData' => $expenseData // Usamos os dados do gasto para preencher o formulário
             ]);
         }
-
+        //Recebe a requisição POST com os dados editados de gasto, chama o Modelo para atualizar e redireciona o usuário para o dashboard.
         public function updateExpense($id){
             
+            $DataEditExpense = $_POST;
+
+            $DataEditExpense['id'] = $id;
+            // 1. Chama um novo método no modelo para lidar com a validação e atualização
+            $result = $this->dashboardModel->updateExpenseData($DataEditExpense);
+            if(isset($result['success'])) {
+                // 2. Se for um sucesso, redireciona o usuário
+                header('Location: /dashboard');
+                exit;
+            } else {
+                // 3. Se falhar, renderiza o formulário de edição novamente com os erros
+                // A view de edição será recarregada com as mensagens de erro
+                return $this->showEditExpenseForm($id, $result['errors'], $DataEditExpense);
+            }
         }
     }
 ?>
