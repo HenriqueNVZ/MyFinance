@@ -99,6 +99,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
             <form action="\addExpense" method="POST">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
 
                 <div class="form-group">
                     <label for="Valor">Valor</label>
