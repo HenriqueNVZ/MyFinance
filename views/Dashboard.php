@@ -62,16 +62,17 @@ if (!isset($_SESSION['user_id'])) {
 
                                 <td class="td-actions">
                                     <div class="btn-actions">
-                                    <button class="btn-action btn-edit">
-                                        <i class="fa-solid fa-pen-to-square">
-                                            <a href="/editExpense?id=<?= $expense['id'] ?>"></a>
-                                        </i>
-                                    </button>
-                                    <button class="btn-action btn-delete">
-                                        <i class="fa-solid fa-trash-can">
-                                            <a href="/deleteExpense?id=<?= $expense['id'] ?>"></a>
-                                        </i>                            
-                                    </button>
+                                        <form action="/editExpense" method="POST"> 
+                                            <button class="btn-action btn-edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        </form>
+
+                                        <form action="/deleteExpense" method="POST"> 
+                                            <button class="btn-action btn-edit">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>                    
                             </tr>

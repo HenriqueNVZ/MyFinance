@@ -67,5 +67,9 @@
                 'formData' => $expenseData // Usamos os dados do gasto para preencher o formulário
             ]);
         }
+
+        public function updateExpense($id){
+            
+        }
     }
 ?>
