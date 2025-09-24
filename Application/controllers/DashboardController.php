@@ -15,7 +15,9 @@
         // Método principal para exibir a página do dashboard
         public function index(){
             //Lógica de busca de dados do modelo
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }            
             $UserId = $_SESSION['user_id'] ?? false;
             if(!$UserId){
                 //Se o usuario não estiver logado é redirecionado para login

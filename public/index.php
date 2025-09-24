@@ -1,6 +1,9 @@
 <?php
 //Carrega o autoload
 require_once __DIR__.'/../vendor/autoload.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Carrega o arquivo .env, gerando a superglobal $_ENV para acessar dados de .env
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -48,7 +51,8 @@ $router->registerGet('/dashboard', function() use ($dashboardController) {
 });
 
 //Rota para exibir o modal e editar o gasto
-$router->registerGet('/editExpense{id}', function($id) use ($dashboardController) {
+$router->registerGet('/editExpense', function() use ($dashboardController) {
+    $id = $_GET['id'] ?? null;
     echo $dashboardController->showEditExpenseForm($id);
 });
 
