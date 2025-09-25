@@ -35,7 +35,7 @@
                 $query = ("SELECT * FROM {$this->tableName} WHERE id = :id");
             try{
                 $stmt = $this->pdo->prepare($query);
-                $stmt->bindParam(":id",$id);
+                $stmt->bindParam(":id",$id, PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             }catch(PDOException $e){

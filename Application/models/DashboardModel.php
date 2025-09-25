@@ -76,15 +76,26 @@
         public function updateExpenseData($DataEditExpense){
             //Pega o id do array para ser passado ao método update
             $id = $DataEditExpense['id'];
-            // Removemos o 'id' do array de dados para que ele não seja incluído na cláusula SET do SQL
-            $dataToUpdate = $DataEditExpense;
-            unset($dataToUpdate['id']);
+            $dataToUpdate = [
+                'valor'     => $DataEditExpense['valor'],
+                'categoria' => $DataEditExpense['categoria'],
+                
+                // CORREÇÃO CRÍTICA: Mapeia 'description' do form para 'descricao' do banco
+                'descricao' => $DataEditExpense['description'], 
+                
+                // CORREÇÃO: Mapeia 'date' do form para 'data_gasto' do banco
+                'data_gasto' => $DataEditExpense['date']
+            ];
+
             //Chama a função de validação de dados
             $errors = $this->validateExpenseData($DataEditExpense);
             //Se nao for válida retorna um array de erros
             if(!empty($errors)){
                 return ['errors' => $errors];
             }
+            // Removemos o 'id' do array de dados para que ele não seja incluído na cláusula SET do SQL
+            $dataToUpdate = $DataEditExpense;
+            unset($dataToUpdate['id']);
             //Chama o método update para atualizar os dados
             $updateSuccessful = $this->update($id,$dataToUpdate);
             //Seder tudo certo retorna o array com success

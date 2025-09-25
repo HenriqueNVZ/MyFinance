@@ -76,8 +76,8 @@ $router->registerPost('/addExpense', function() use ($dashboardController) {
     echo $dashboardController->addExpense();
 });
 //Rota para quando o usuario submete o formulario de edição dos gastos
-$router->registerPost('/updateExpense{id}', function($id) use ($dashboardController) {
-    echo $dashboardController->updateExpense($id);
+$router->registerPost('/updateExpense', function() use ($dashboardController) {
+    echo $dashboardController->updateExpense();
 });
 
 

@@ -94,7 +94,6 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
         </div>   
     </main>
 
-<!-- Adicionar o css e javascript para mostrar e tirar o modal -->
     <div class="modal">
         <div class="modal-content">
             <div class="close">
@@ -104,7 +103,8 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                 Adicionar Novo Gasto
             </div>
 
-            <form action="\addExpense" method="POST">
+            <form action="\addExpense" method="POST" class="modal-form">
+                <input type="hidden" name="id" value="" id="expense-id-hidden">
                 <div class="form-group">
                     <label for="Valor">Valor</label>
                     <!-- Type text mas no js valido para apenas aceitar numeros - mais bonito -->
@@ -163,6 +163,12 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
             </form>
         </div>
     </div>
+    <script>
+    <!-- // ESTA LINHA É O QUE CRIA A VARIÁVEL GLOBAL JS -->
+        window.expenseToEdit = <?php echo json_encode($expense_to_edit ?? null); ?>;
+    </script>
+
     <script src="/styles/javaScript/modal.js"></script>
+    
 </body>
 </html>

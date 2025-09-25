@@ -73,11 +73,14 @@
             ]);
         }
         //Recebe a requisição POST com os dados editados de gasto, chama o Modelo para atualizar e redireciona o usuário para o dashboard.
-        public function updateExpense($id){
+        public function updateExpense(){
             
             $DataEditExpense = $_POST;
-
-            $DataEditExpense['id'] = $id;
+            $id = $DataEditExpense['id'] ?? null;
+            if (!$id) {
+                header('Location: /dashboard');
+                exit;
+            }
             // 1. Chama um novo método no modelo para lidar com a validação e atualização
             $result = $this->dashboardModel->updateExpenseData($DataEditExpense);
             if(isset($result['success'])) {
