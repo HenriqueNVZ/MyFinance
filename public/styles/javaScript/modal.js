@@ -25,6 +25,7 @@ const inputDate = document.querySelector("#date");
 const idHidden = document.getElementById('expense-id-hidden');
 const title = document.querySelector('.title');
 const modalButton = document.querySelector('.btn-add');
+console.log(window.expenseToEdit);
 
     if(window.expenseToEdit){
         //Altera a action do form do modal para evitar criar um novo gasto ao invés de editar

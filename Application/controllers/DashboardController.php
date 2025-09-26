@@ -55,7 +55,10 @@
         }
 
         public function showEditExpenseForm($id){
-
+            //Garante a sessão ativa
+            if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
             
             $expenseData = $this->dashboardModel->findById($id);
             if(!$expenseData){

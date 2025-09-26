@@ -74,37 +74,43 @@
         }
 
         public function updateExpenseData($DataEditExpense){
-            //Pega o id do array para ser passado ao método update
+    
+            // 1. Mapeamento e separação do ID (para a cláusula WHERE)
+            // O ID é necessário para a validação (checagem de posse) e para o update
             $id = $DataEditExpense['id'];
-            $dataToUpdate = [
-                'valor'     => $DataEditExpense['valor'],
-                'categoria' => $DataEditExpense['categoria'],
-                
-                // CORREÇÃO CRÍTICA: Mapeia 'description' do form para 'descricao' do banco
-                'descricao' => $DataEditExpense['description'], 
-                
-                // CORREÇÃO: Mapeia 'date' do form para 'data_gasto' do banco
-                'data_gasto' => $DataEditExpense['date']
+
+            // CRIA O ARRAY COM AS CHAVES CORRETAS DO BANCO DE DADOS (descricao, data_gasto)
+            $mappedData = [
+                'valor'      => $DataEditExpense['valor'] ?? null,
+                'categoria'  => $DataEditExpense['categoria'] ?? null,
+                'descricao'  => $DataEditExpense['description'] ?? null,
+                'data_gasto' => $DataEditExpense['date'] ?? null
             ];
 
-            //Chama a função de validação de dados
-            $errors = $this->validateExpenseData($DataEditExpense);
-            //Se nao for válida retorna um array de erros
-            if(!empty($errors)){
-                return ['errors' => $errors];
+            // 2. Chama a função de validação de dados no ARRAY MAPEADO
+            // A validação é feita nos dados que serão salvos no banco.
+            $errors = $this->validateExpenseData($mappedData);
+            
+            // Se a validação retornar algum erro, retorna o array de erros detalhados
+            if (!empty($errors)){
+                return ['errors' => $errors]; 
             }
-            // Removemos o 'id' do array de dados para que ele não seja incluído na cláusula SET do SQL
-            $dataToUpdate = $DataEditExpense;
-            unset($dataToUpdate['id']);
-            //Chama o método update para atualizar os dados
-            $updateSuccessful = $this->update($id,$dataToUpdate);
-            //Seder tudo certo retorna o array com success
+            
+            // 3. O array a ser atualizado NÃO PODE conter o ID do WHERE
+            // O array para o update é o array mapeado sem o ID.
+            $dataToUpdate = $mappedData;
+            
+            // 4. Chamamos o método update que herdamos do BaseModel
+            // Passamos o ID e os dados a serem alterados (que têm as chaves corretas)
+            $updateSuccessful = $this->update($id, $dataToUpdate);
+            
+            // 5. Verifica o sucesso da operação no banco de dados
             if($updateSuccessful){
                 return ['success' => true];
-            }else{
-                return ['errors' => ['Falha ao atualizar os dados']];
+            } else {
+                return ['errors' => ['database' => 'Falha ao atualizar os dados. Tente novamente.']];
             }
-        }
+}
 
     }
 ?>

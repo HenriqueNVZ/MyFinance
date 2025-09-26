@@ -1,16 +1,16 @@
 <?php
     namespace User\MyFinance\models;
     use User\MyFinance\core\Database;
+    use User\MyFinance\core\Response;
     use PDO;
     use PDOException;
     
-    // require_once __DIR__. '/../core/database.php';
-    class BaseModel{
+        class BaseModel{
 
-        private $pdo;
-        protected $tableName;
+        protected $pdo;
+        private $tableName;
 
-        public function __construct($pdo) {
+        public function __construct(Response $response) {
             $this->pdo = Database::getInstance()->getConnection();
          
         }
@@ -38,6 +38,7 @@
                 $stmt->bindParam(":id",$id, PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt->fetch(PDO::FETCH_ASSOC);
+                
             }catch(PDOException $e){
                 echo "Erro na consulta: " . $e->getMessage();
                 return false;

@@ -69,13 +69,13 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                                     <div class="btn-actions">
                                         <form action="/editExpense" method="GET"> 
                                             <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
-                                            <button class="btn-action btn-edit">
+                                            <button class="btn-action btn-edit" type="submit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                         </form>
 
                                         <form action="/deleteExpense" method="GET"> 
-                                            <button class="btn-action btn-edit">
+                                            <button class="btn-action btn-edit" type="submit">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form>
