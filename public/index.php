@@ -1,6 +1,10 @@
 <?php
 //Carrega o autoload
 require_once __DIR__.'/../vendor/autoload.php';
+// FORÇA O PHP A MOSTRAR TODOS OS ERROS NA TELA
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

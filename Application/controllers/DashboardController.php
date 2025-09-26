@@ -61,6 +61,7 @@
                 }
             
             $expenseData = $this->dashboardModel->findById($id);
+            
             if(!$expenseData){
                 //Se nao houver dados do gasto retorna para dashboard
                 header('Location: /dashboard');

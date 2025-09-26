@@ -8,7 +8,7 @@
         class BaseModel{
 
         protected $pdo;
-        private $tableName;
+        protected $tableName;
 
         public function __construct(Response $response) {
             $this->pdo = Database::getInstance()->getConnection();
@@ -32,7 +32,8 @@
           
         //Esta função busca um dado por id
         public function findById($id){
-                $query = ("SELECT * FROM {$this->tableName} WHERE id = :id");
+            
+            $query = "SELECT * FROM {$this->tableName} WHERE id = :id";
             try{
                 $stmt = $this->pdo->prepare($query);
                 $stmt->bindParam(":id",$id, PDO::PARAM_INT);
@@ -43,6 +44,7 @@
                 echo "Erro na consulta: " . $e->getMessage();
                 return false;
             }
+
         }
 
         //CRUD(exeto read)
