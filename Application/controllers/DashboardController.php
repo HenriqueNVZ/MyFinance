@@ -54,7 +54,7 @@
             }
         }
 
-        public function showEditExpenseForm($id){
+        public function showEditExpenseForm($id, $errors = [], $formData = []){
             //Garante a sessão ativa
             if (session_status() === PHP_SESSION_NONE) {
                     session_start();

@@ -89,7 +89,7 @@
 
             // 2. Chama a função de validação de dados no ARRAY MAPEADO
             // A validação é feita nos dados que serão salvos no banco.
-            $errors = $this->validateExpenseData($mappedData);
+            $errors = $this->validateExpenseData($DataEditExpense);
             
             // Se a validação retornar algum erro, retorna o array de erros detalhados
             if (!empty($errors)){

@@ -86,7 +86,7 @@
         
         // 3. O array de dados que será enviado ao execute
         // Ele é a união dos dados a serem alterados e do ID
-        $dataToExecute = array_merge($data, [':id' => $id]);
+        $dataToExecute = array_merge($data, ['id' => $id]);
         
         try{
             $stmt = $this->pdo->prepare($query);
