@@ -69,26 +69,39 @@
             }
         }
 
-        //Esta função atualiza os dados de um usuario
-        public function update(int $id,array $data){
-            $setClause = '';
-            foreach($data as $key => &$value){
-                $setClause .= " {$key} = :{$key},";
-            }
-            //remove a ultima virgula;
-            $setClause = rtrim($setClause, ', ');
-            $query = ("UPDATE {$this->tableName} SET {$setClause} WHERE id = :id");
-
-            try{
-                $stmt = $this->pdo->prepare($query);
-                $data['id'] = $id;
-                $stmt->execute($data);
-                return true;
-            }catch(PDOException $e){
-                echo "Erro na atualização de dados: " . $e->getMessage();
-                return false;
-            }
+        //Esta função atualiza dados
+       public function update(int $id, array $data) {
+        $setClause = '';
+        // 1. O array $data contém os campos a serem atualizados (valor, categoria, etc.)
+        foreach($data as $key => $value){
+            // Note: Não precisamos do &value e bindParam aqui.
+            // A chave no SET é o nome da coluna, e o placeholder é :nome_da_coluna
+            $setClause .= " {$key} = :{$key},";
         }
+        // remove a ultima virgula
+        $setClause = rtrim($setClause, ', ');
+        
+        // 2. A query agora usa :id no WHERE
+        $query = "UPDATE {$this->tableName} SET {$setClause} WHERE id = :id";
+        
+        // 3. O array de dados que será enviado ao execute
+        // Ele é a união dos dados a serem alterados e do ID
+        $dataToExecute = array_merge($data, [':id' => $id]);
+        
+        try{
+            $stmt = $this->pdo->prepare($query);
+            
+            // CORREÇÃO CRÍTICA: Passamos o array completo, que inclui o 'id' no final.
+            $stmt->execute($dataToExecute);
+            
+            // O execute() retorna true ou false, que será retornado
+            return true; 
+        }catch(PDOException $e){
+            // Exibe a mensagem de erro detalhada do SQL para debug
+            echo "Erro na atualização de dados: " . $e->getMessage();
+            return false;
+        }
+}
         //Esta função apaga os dados de um usuario
         public function delete($id){
             $query = ("DELETE FROM {$this->tableName} WHERE id = :id");
