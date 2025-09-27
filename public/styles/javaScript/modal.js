@@ -46,3 +46,21 @@ const modalButton = document.querySelector('.btn-add');
         modalButton.innerHTML = "Adicionar";
         title.innerHTML = "Adicionar Novo Gasto";
     }
+
+///CODIGO PARA DELETE DE GASTOS
+//Seletores
+const modalCofirmDelete = document.querySelector('.')
+const deleteButton = document.querySelector('.btn-edit');
+const btnCloseDeleteModal = document.querySelector('')
+
+
+
+
+//Abre o modal de confirmar excluir um gasto
+deleteButton.addEventListener('click',(event) => {
+    modalCofirmDelete.classList.remove('hidden');
+})
+//Fecha o modal de confirmar excluir um gasto
+btnCloseDeleteModal.addEventListener('click',(event) => {
+    modalCofirmDelete.classList.add('hidden');
+})

@@ -97,5 +97,28 @@
                 return $this->showEditExpenseForm($id, $result['errors'], $DataEditExpense);
             }
         }
+        //Método que pega o id passa ao método do Model e redireciona o usuario
+        public function deleteExpense(){
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $userId = $_SESSION['user_id'] ?? null;
+            $expenseId = $_POST['id'] ?? 0;
+        
+            // Verifica se o id da sessão e o id do formulario são válidos
+            if (!$expenseId || !$userId) {
+                header('Location: /dashboard');
+                exit;
+            }
+            
+            $expense = $this->dashboardModel->getExpensesByUserId($expenseId); 
+            if (!$expense || $expense['user_id'] != $userId) {
+                header('Location: /dashboard');
+                exit;
+            }
+            $this->dashboardModel->deleteExpenseData($expenseId,$userId);
+            header('Location: /dashboard');
+            exit; 
+        }
     }
 ?>

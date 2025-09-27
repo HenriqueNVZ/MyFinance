@@ -74,11 +74,11 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                                             </button>
                                         </form>
 
-                                        <form action="/deleteExpense" method="GET"> 
+                                        
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
                                             <button class="btn-action btn-edit" type="submit">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                        </form>
                                     </div>
                                 </td>                    
                             </tr>
@@ -163,6 +163,13 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
             </form>
         </div>
     </div>
+
+    <div class="confirmDelete">
+       
+    </div>
+
+
+
     <script>
     <!-- // ESTA LINHA É O QUE CRIA A VARIÁVEL GLOBAL JS -->
         window.expenseToEdit = <?php echo json_encode($expense_to_edit ?? null); ?>;

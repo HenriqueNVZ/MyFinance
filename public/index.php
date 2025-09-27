@@ -79,8 +79,10 @@ $router->registerPost('/addExpense', function() use ($dashboardController) {
 $router->registerPost('/updateExpense', function() use ($dashboardController) {
     echo $dashboardController->updateExpense();
 });
-
-
+//Rota para quando o usuario excluir um gasto
+$router->registerPost('/deleteExpense',function() use ($dashboardController){
+    $dashboardController->deleteExpense();
+});
 
 // Resolve a rota
 $router->resolve();

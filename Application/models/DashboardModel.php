@@ -110,7 +110,20 @@
             } else {
                 return ['errors' => ['database' => 'Falha ao atualizar os dados. Tente novamente.']];
             }
-}
-
+        }
+        //Método para excluir um gasto
+        public function deleteExpenseData($id,$userId){
+            //Verificação se o id é válido
+            if($id <= 0){
+                return [ 'erros' => ['delete' => 'id inválido']];
+            }
+            $deleteSuccessful = $this->delete($id,$userId);
+            //Verficação de sucesso do delete
+            if($deleteSuccessful){
+                return ['success' => true];
+            }else {
+                return ['errors' => ['database' => 'Falha ao excluir os dados. Tente novamente.']];
+            }
+        }
     }
 ?>
