@@ -164,10 +164,24 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
         </div>
     </div>
 
-    <div class="confirmDelete">
-       
-    </div>
+    <div class="delete-modal">
+        <div class="content ">
+            <div class="title">
+                <h4>Confirmar exclusão</h4>
+            </div>
 
+            <div class="text">
+                <h5>Deseja realmente excluir este gasto?</h5>
+            </div>
+
+            <div class="buttons">
+                    <button class="btn-cancel">Cancelar</button>
+                <form action="/deleteExpense" method="POST">
+                    <button type="submit" class="btn-confirm">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <script>
