@@ -125,5 +125,15 @@
                 return ['errors' => ['database' => 'Falha ao excluir os dados. Tente novamente.']];
             }
         }
+
+        public function getExpenseByIdAndUserId($expenseId, $userId)
+        {
+            $query = "SELECT * FROM  {$this->tableName} WHERE id = :id AND user_id = :user_id LIMIT 1";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $expenseId, PDO::PARAM_INT);
+            $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>

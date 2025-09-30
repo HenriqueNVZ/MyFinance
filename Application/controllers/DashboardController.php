@@ -111,8 +111,9 @@
                 exit;
             }
             
-            $expense = $this->dashboardModel->getExpensesByUserId($expenseId); 
-            if (!$expense || $expense['user_id'] != $userId) {
+            $expense = $this->dashboardModel->getExpenseByIdAndUserId($expenseId, $userId);
+            if (!$expense) {
+                // Gasto não existe ou não pertence ao usuário
                 header('Location: /dashboard');
                 exit;
             }
