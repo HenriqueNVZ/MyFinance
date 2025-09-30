@@ -64,21 +64,31 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                                 <td> <?= htmlspecialchars($expense['valor'])?> </td>
                                 <td> <?= htmlspecialchars($expense['descricao'])?> </td>
                                 <td> <?= htmlspecialchars($expense['data_gasto']) ?></td>
+                                
 
                                 <td class="td-actions">
                                     <div class="btn-actions">
                                         <form action="/editExpense" method="GET"> 
-                                            <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
+                                            <input 
+                                            type="hidden" 
+                                            name="id" 
+                                            value="<?= htmlspecialchars($expense['id']) ?>"
+                                            >
                                             <button class="btn-action btn-edit" type="submit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                         </form>
-
-                                        
-                                            <input type="hidden" name="id" value="<?= htmlspecialchars($expense['id']) ?>">
-                                            <button class="btn-action btn-edit" type="submit">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                        <form action="#" method="POST" class="form-delete-gasto">
+                                            <input 
+                                            type="hidden" 
+                                            name="id"
+                                            class="expense-id-input" 
+                                            value="<?= htmlspecialchars($expense['id']) ?>"
+                                            >
+                                            <button class="btn-action btn-delete" type="button" title="Excluir Gasto">
+                                                <i class="fa-solid fa-trash-can" ></i>
                                             </button>
+                                        </form>
                                     </div>
                                 </td>                    
                             </tr>
@@ -165,7 +175,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
     </div>
 
     <div class="delete-modal">
-        <div class="content ">
+        <div class="content">
             <div class="title">
                 <h4>Confirmar exclusão</h4>
             </div>
@@ -175,8 +185,10 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
             </div>
 
             <div class="buttons">
-                    <button class="btn-cancel">Cancelar</button>
-                <form action="/deleteExpense" method="POST">
+                <button type="button" class="btn-cancel">Cancelar</button>
+
+                <form action="/deleteExpense" method="POST" id="confirm-delete-form">
+                    <input type="hidden" name="id" id="delete-gasto-id" value=""> 
                     <button type="submit" class="btn-confirm">Confirmar</button>
                 </form>
             </div>

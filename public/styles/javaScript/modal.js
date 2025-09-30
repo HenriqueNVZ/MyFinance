@@ -48,19 +48,46 @@ const modalButton = document.querySelector('.btn-add');
     }
 
 ///CODIGO PARA DELETE DE GASTOS
-//Seletores
-const modalCofirmDelete = document.querySelector('.')
-const deleteButton = document.querySelector('.btn-edit');
-const btnCloseDeleteModal = document.querySelector('')
 
+//Seletores das actions
+const deleteButtons = document.querySelectorAll('.btn-delete');//Todos os botões de lixeiras
+const HiddenInputId = document.getElementById("delete-gasto-id");
+const confirmDeleteForm = document.querySelector('#confirm-delete-form');
 
+//Seletores do modal
+const deleteModal = document.querySelector('.delete-modal'); //O modal
+const cancelButton = document.querySelector('.btn-cancel');
+let gastoId = null;
 
+//Abre o modal de exlusão 
+deleteButtons.forEach(button => {
+  button.addEventListener("click", (event) => {
+        // 1. Encontra o form pai do botão que foi clicado
+        const formTrigger = event.currentTarget.closest('.form-delete-gasto');
+        
+        // 2. Encontra o INPUT HIDDEN dentro desse form
+        const hiddenInput = formTrigger.querySelector('.expense-id-input');
+        
+        // 3. Pega o ID
+        const gastoId = hiddenInput.value;
+        
+        // 4. INJETA o ID no campo oculto do FORMULÁRIO DENTRO DO MODAL
+        HiddenInputId.value = gastoId;
+        console.log("ID capturado ao clicar na lixeira:", gastoId);
 
-//Abre o modal de confirmar excluir um gasto
-deleteButton.addEventListener('click',(event) => {
-    modalCofirmDelete.classList.remove('hidden');
-})
-//Fecha o modal de confirmar excluir um gasto
-btnCloseDeleteModal.addEventListener('click',(event) => {
-    modalCofirmDelete.classList.add('hidden');
-})
+        // 5. Abre o modal de confirmação
+        deleteModal.classList.add('active');
+  });
+});
+
+//Fecha o modal de exlusão
+cancelButton.addEventListener("click", (event) => {
+    const HiddenInputId = document.getElementById('delete-gasto-id');
+    HiddenInputId.value = ''; 
+    deleteModal.classList.remove("active");
+});
+
+document.getElementById('confirm-delete-form').addEventListener('submit', function (e) {
+    const id = document.getElementById('delete-gasto-id').value;
+    console.log("Formulário enviado com ID:", id);
+});

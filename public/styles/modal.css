@@ -18,8 +18,8 @@
     display: flex;
 }
 
-.modal-content,
-.delete-modal .content{
+.modal-content
+{
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -103,7 +103,7 @@
 }
 
 /* MODAL DE CONFIRMAR EXCLUSÃO: */
-
+/* adicionar o hover dos botoes */
 
 .delete-modal .content{
     display: flex;
@@ -151,8 +151,14 @@
 .btn-confirm{
     background-color: #28A745;
     color: #fff; 
+}
+
+/* .btn-confirm:hover{
 
 }
+.btn-cancel:hover{
+
+} */
 
 
 
