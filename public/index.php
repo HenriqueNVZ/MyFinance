@@ -84,6 +84,10 @@ $router->registerPost('/deleteExpense',function() use ($dashboardController){
     $dashboardController->deleteExpense();
 });
 
+$router->registerPost('/deleteUser',function()use ($dashboardController){
+    $dashboardController->deleteUser();
+});
+
 // Resolve a rota
 $router->resolve();
 

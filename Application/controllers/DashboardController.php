@@ -121,5 +121,11 @@
             header('Location: /dashboard');
             exit; 
         }
-    }
+
+        public function deleteUser(){
+            
+        }
+    
+}
+
 ?>

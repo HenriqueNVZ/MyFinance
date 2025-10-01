@@ -157,5 +157,8 @@
             }
             return $data;   
         }
+        public function deleteAccount(){
+            
+        }
     }
 ?>
