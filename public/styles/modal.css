@@ -52,6 +52,14 @@
 .close i:hover{
     color: #218838;
 }
+.title{
+    font-size: 26px;
+    margin-top: 50px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin: 0;
+}
 
 .form-group{
     width: 100%;
@@ -133,12 +141,8 @@
     display: flex;
     gap: 20px;
     align-items: center;
-}
-
-.buttons{
     margin-top: 10px;
 }
-
 
 .btn-cancel,
 .btn-confirm{
@@ -147,19 +151,27 @@
     border-radius: 8px;
     width: 120px;
     font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+
 }
 .btn-confirm{
     background-color: #28A745;
     color: #fff; 
 }
 
-/* .btn-confirm:hover{
+.btn-confirm:hover{
+    background-color: #218838;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 
 }
 .btn-cancel:hover{
+    background-color: #E0E0E0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 
-} */
+}
 
+/* MODAL DO PERFIL */
 
 
 

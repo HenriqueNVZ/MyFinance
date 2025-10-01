@@ -195,6 +195,49 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
         </div>
     </div>
 
+    <div class="perfil-modal">
+    <div class="perfil-content">
+        <form action="/sua-rota-de-processamento" method="POST">
+            <div class="conta-Area">
+                <div class="name-Area">
+                    <h2>Conta</h2>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" value="">
+                </div>
+
+                <div class="logout-area">
+                    <button type="button" class="logout-button">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                    </button>
+                </div>
+            </div>
+
+            <div class="info-Area">
+                <h2>Segurança da Conta</h2>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+
+                <label for="celular">Telefone</label>
+                <input type="tel" id="celular" name="celular">
+
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password">
+            </div>
+
+            <div class="suporte-Area">
+                <h2>Suporte</h2>
+                <h4>Excluir minha conta</h4>
+                <p>Exclua permanentemente a conta e remova o acesso de todos os espaços de trabalho.</p>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit">Salvar Alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
     <script>
     <!-- // ESTA LINHA É O QUE CRIA A VARIÁVEL GLOBAL JS -->
