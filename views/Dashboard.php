@@ -195,48 +195,70 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
         </div>
     </div>
 
-    <div class="perfil-modal">
-    <div class="perfil-content">
-        <form action="/sua-rota-de-processamento" method="POST">
-            <div class="conta-Area">
-                <div class="name-Area">
+   <div class="perfil-modal">
+        <div class="perfil-content">
+            <div class="close">
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </div>
+            <form class="perfil-form" action="#" method="POST">
+                <div class="form-header">
                     <h2>Conta</h2>
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" value="">
-                </div>
-
-                <div class="logout-area">
                     <button type="button" class="logout-button">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                        <i class="fa-solid fa-right-from-bracket"></i> 
+                        Logout
                     </button>
                 </div>
-            </div>
 
-            <div class="info-Area">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="nome" name="nome" placeholder="">
+                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                        </div>
+                </div>
+
                 <h2>Segurança da Conta</h2>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                        <div class="input-wrapper">
+                            <input type="email" name="email" id="email" placeholder="">
+                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
 
-                <label for="celular">Telefone</label>
-                <input type="tel" id="celular" name="celular">
+                        </div>
+                </div>
 
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password">
-            </div>
+                <div class="form-group">
+                    <label for="celular">Telefone</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="celular" name="celular" placeholder="">
+                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
 
-            <div class="suporte-Area">
-                <h2>Suporte</h2>
-                <h4>Excluir minha conta</h4>
-                <p>Exclua permanentemente a conta e remova o acesso de todos os espaços de trabalho.</p>
-            </div>
+                        </div>
+                </div>
 
-            <div class="form-footer">
-                <button type="submit">Salvar Alterações</button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" placeholder="">
+                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
+
+                        </div>
+                </div>
+
+                <div class="suporte-area">
+                    <h2>Suporte</h2>
+                    <a href="" class="delete-count"><i class="fa-regular fa-trash-can" style="color:#dc2626;"></i> Excluir minha conta </a>
+                    <p>Exclua permanentemente a conta e remova o acesso de todos os espaços de trabalho.</p>
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="submit-button">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+
 
 
     <script>

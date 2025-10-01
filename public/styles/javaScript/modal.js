@@ -62,6 +62,8 @@ let gastoId = null;
 //Abre o modal de exlusão 
 deleteButtons.forEach(button => {
   button.addEventListener("click", (event) => {
+        textAreaDelete.innerHTML = 'Deseja realmente excluir este gasto?'
+        modalDeleteForm.action = '/deleteExpense';
         // 1. Encontra o form pai do botão que foi clicado
         const formTrigger = event.currentTarget.closest('.form-delete-gasto');
         
@@ -91,3 +93,37 @@ document.getElementById('confirm-delete-form').addEventListener('submit', functi
     const id = document.getElementById('delete-gasto-id').value;
     console.log("Formulário enviado com ID:", id);
 });
+
+
+///MODAL DO PERFIL
+//SELETORES 
+const perfilIcon = document.querySelector("#user_icon");
+const ModalPerfil = document.querySelector(".perfil-modal");
+const CloseModal = document.querySelector('.icon-close')
+const deleteCount = document.querySelector('.delete-count');
+const textAreaDelete = document.querySelector('.delete-modal .text');
+const modalDeleteForm = document.querySelector('#confirm-delete-form');
+console.log(textAreaDelete)
+//Abre o modal
+
+perfilIcon.addEventListener("click",(event) =>{
+    event.preventDefault();
+    ModalPerfil.classList.add('active');
+})
+
+//Fecha o modal
+CloseModal.addEventListener("click",(event) =>{
+    event.preventDefault(); 
+    ModalPerfil.classList.remove('active');
+    console.log('clicou')
+})
+
+//Ao clicar em excluir conta abrir o modal de confirmação
+deleteCount.addEventListener("click",(event) =>{
+    event.preventDefault();
+    //Prepara o modal: altera o padrão html que seria para excluir um gasto para excluir um usuario
+    textAreaDelete.innerHTML = 'Deseja realmente excluir este usuario?'
+    modalDeleteForm.action = '/deleteUser';
+    deleteModal.classList.add('active');
+    
+})
