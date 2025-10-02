@@ -26,7 +26,7 @@ $userController = new UserController();
 $loginController = new LoginController();
 $dashboardModel = new DashboardModel($response);
 $userModel = new UserModel($response);
-$dashboardController = new DashboardController($dashboardModel);
+$dashboardController = new DashboardController($dashboardModel,$userModel);
 $router = new Router($request,$response,$controller,$userController,$loginController,$dashboardController);
 
 // ROTAS GET: Apenas exibe as páginas
@@ -84,12 +84,10 @@ $router->registerPost('/deleteExpense',function() use ($dashboardController){
     $dashboardController->deleteExpense();
 });
 
-$router->registerPost('/deleteUser',function()use ($dashboardController){
-    $dashboardController->deleteUser();
+$router->registerPost('/deleteUser',function()use ($userController){
+    $userController->deleteUser();
 });
 
 // Resolve a rota
 $router->resolve();
-
-
 ?>

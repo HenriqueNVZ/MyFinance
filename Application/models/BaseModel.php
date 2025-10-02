@@ -103,7 +103,7 @@
         }
 }
         //Esta função apaga os dados de um usuario
-        public function delete(int $id, int $userId) {
+        public function deleteExpenseData(int $id, int $userId) {
             $query = "DELETE FROM {$this->tableName} WHERE id = :id AND user_id = :user_id";
 
             try {
@@ -111,12 +111,13 @@
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
                 $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
 
-                return $stmt->execute(); // true se deletou, false se não achou nada
+                return $stmt->execute(); 
             } catch (PDOException $e) {
                 echo "Erro ao excluir dados: " . $e->getMessage();
                 return false;
             }
         }
+
         
     }
 ?>

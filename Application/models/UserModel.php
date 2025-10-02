@@ -1,6 +1,8 @@
 <?php
     namespace User\MyFinance\models;
-    use User\MyFinance\core\Database;
+
+use GrahamCampbell\ResultType\Success;
+use User\MyFinance\core\Database;
     use User\MyFinance\core\Response;
     use User\MyFinance\models\BaseModel;
     use PDO;
@@ -157,8 +159,54 @@
             }
             return $data;   
         }
-        public function deleteAccount(){
-            
-        }
+
+        // public function deleteUserData($userId){
+        //     $query = "DELETE FROM {$this->tableName} WHERE id = :id";
+
+        //     try {
+        //         $stmt = $this->pdo->prepare($query);
+        //         $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
+
+        //         if ($stmt->execute()) {
+        //             // retorna true apenas se realmente deletou alguma linha
+        //             return $stmt->rowCount() > 0;
+        //         }
+
+        //         return false;
+        //     } catch (PDOException $e) {
+        //         echo "Erro ao excluir dados: " . $e->getMessage();
+        //         return false;
+        //     }
+        // }
+        
+
+        public function deleteUserData($userId){
+            try {
+                // Deletar gastos primeiro
+                $stmtGastos = $this->pdo->prepare("DELETE FROM gastos WHERE user_id = :id");
+                $stmtGastos->bindValue(':id', $userId, PDO::PARAM_INT);
+                $stmtGastos->execute();
+
+                // Deletar usuário
+                $stmtUser = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+                $stmtUser->bindValue(':id', $userId, PDO::PARAM_INT);
+                $stmtUser->execute();
+
+                // Retorna verdadeiro se pelo menos 1 linha foi afetada
+                return $stmtUser->rowCount() > 0;
+
+            } catch (PDOException $e) {
+                return false;
+            }
+    }
+
+
+        // public function deleteAccountData($userId){
+        //     if($userId <= 0){
+        //         return false;
+        //     }
+        //     $success = $this->deleteUserData($userId);
+        //     return $success;
+        // }
     }
 ?>

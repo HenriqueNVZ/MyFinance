@@ -117,7 +117,7 @@
             if($id <= 0){
                 return [ 'erros' => ['delete' => 'id inválido']];
             }
-            $deleteSuccessful = $this->delete($id,$userId);
+            $deleteSuccessful = $this->deleteExpenseData($id,$userId);
             //Verficação de sucesso do delete
             if($deleteSuccessful){
                 return ['success' => true];

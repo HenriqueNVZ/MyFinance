@@ -100,10 +100,9 @@ document.getElementById('confirm-delete-form').addEventListener('submit', functi
 const perfilIcon = document.querySelector("#user_icon");
 const ModalPerfil = document.querySelector(".perfil-modal");
 const CloseModal = document.querySelector('.icon-close')
-const deleteCount = document.querySelector('.delete-count');
+const deleteCount = document.querySelector('.delete-account');
 const textAreaDelete = document.querySelector('.delete-modal .text');
 const modalDeleteForm = document.querySelector('#confirm-delete-form');
-console.log(textAreaDelete)
 //Abre o modal
 
 perfilIcon.addEventListener("click",(event) =>{
@@ -115,7 +114,6 @@ perfilIcon.addEventListener("click",(event) =>{
 CloseModal.addEventListener("click",(event) =>{
     event.preventDefault(); 
     ModalPerfil.classList.remove('active');
-    console.log('clicou')
 })
 
 //Ao clicar em excluir conta abrir o modal de confirmação

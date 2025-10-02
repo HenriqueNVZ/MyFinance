@@ -39,6 +39,25 @@ class UserController extends Controller{
         return $this->renderView('/register', ['errors' => $errors, 'formData' => $formData]);
     } 
 
+    public function deleteUser(){
+            $userId = $_SESSION['user_id'] ?? null;
+            var_dump($userId);
+            if($userId <= 0){
+                //Não há um usuario logado
+                header("Location: /login");
+                exit;
+            }
+            $deleteAction = $this->userModel->deleteUserData($userId);
+            if($deleteAction){
+                session_destroy();
+                header("Location: /register");
+                exit;
+            }else{
+                header("Location: /dashboard");
+                exit;
+            }
+        }
+
     
 
 

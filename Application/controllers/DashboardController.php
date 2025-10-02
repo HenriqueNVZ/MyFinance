@@ -2,14 +2,16 @@
     namespace User\MyFinance\controllers;
     use User\MyFinance\Models\DashboardModel;
     use User\MyFinance\core\Response;
-
+    use User\MyFinance\models\BaseModel;
+    use User\MyFinance\models\UserModel;
 
     //addExpense pega os dados e chama createExpense, create expense chama a validação e caso tudo de certo chama create e adiciona no banco
     class DashboardController extends Controller{
-        
+        protected $userModel;
         protected $dashboardModel;
-        public function __construct(DashboardModel $dashboardModel) {
+        public function __construct(DashboardModel $dashboardModel,UserModel $userModel) {
             $this->dashboardModel = $dashboardModel;
+            $this->userModel = $userModel;
         }
 
         // Método principal para exibir a página do dashboard
@@ -122,9 +124,7 @@
             exit; 
         }
 
-        public function deleteUser(){
-            
-        }
+        
     
 }
 

@@ -190,7 +190,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                 <form action="/deleteExpense" method="POST" id="confirm-delete-form">
                     <input type="hidden" name="id" id="delete-gasto-id" value=""> 
                     <button type="submit" class="btn-confirm">Confirmar</button>
-                </form>
+                </form> 
             </div>
         </div>
     </div>
@@ -248,7 +248,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
 
                 <div class="suporte-area">
                     <h2>Suporte</h2>
-                    <a href="" class="delete-count"><i class="fa-regular fa-trash-can" style="color:#dc2626;"></i> Excluir minha conta </a>
+                    <a href="" class="delete-account"><i class="fa-regular fa-trash-can" style="color:#dc2626;"></i> Excluir minha conta </a>
                     <p>Exclua permanentemente a conta e remova o acesso de todos os espaços de trabalho.</p>
                 </div>
 
