@@ -123,6 +123,17 @@
             header('Location: /dashboard');
             exit; 
         }
+        public function getUserData() {
+            $userId = $_SESSION['user_id'] ?? null;
+
+            if(!$userId){
+                header("Location: /login");
+                exit;
+            }
+
+            return $userData = $this->userModel->findById($userId);
+
+        }
 
         
     

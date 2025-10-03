@@ -103,12 +103,12 @@ const CloseModal = document.querySelector('.icon-close')
 const deleteCount = document.querySelector('.delete-account');
 const textAreaDelete = document.querySelector('.delete-modal .text');
 const modalDeleteForm = document.querySelector('#confirm-delete-form');
-//Abre o modal
 
-perfilIcon.addEventListener("click",(event) =>{
-    event.preventDefault();
-    ModalPerfil.classList.add('active');
-})
+const inputName = document.querySelector("#nome");
+const inputEmail = document.querySelector('#email')
+const inputCelular = document.querySelector('#celular')
+
+//Abre o modal
 
 //Fecha o modal
 CloseModal.addEventListener("click",(event) =>{
@@ -116,12 +116,36 @@ CloseModal.addEventListener("click",(event) =>{
     ModalPerfil.classList.remove('active');
 })
 
-//Ao clicar em excluir conta abrir o modal de confirmação
 deleteCount.addEventListener("click",(event) =>{
     event.preventDefault();
     //Prepara o modal: altera o padrão html que seria para excluir um gasto para excluir um usuario
     textAreaDelete.innerHTML = 'Deseja realmente excluir este usuario?'
+    //Altera a action do form original do modal delete
     modalDeleteForm.action = '/deleteUser';
+    //Abre o modal de confirmação
     deleteModal.classList.add('active');
     
 })
+
+
+const userData = window.userData;
+perfilIcon.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    fetch('/api/profile-data') // <--- Requisição HTTP (GET) para o servidor
+        .then(response => {
+            // ... lógica para checar o status e converter para JSON ...
+            return response.json();
+        })
+        .then(userData => {
+            // ... lógica para preencher os inputs do modal com userData.nome, etc. ...
+            inputName.value = userData['first_name'] + " " + userData['last_name'];
+            inputEmail.value = userData['email'];
+            inputCelular.value = userData['celular'];   
+            ModalPerfil.classList.add('active'); 
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+});
+

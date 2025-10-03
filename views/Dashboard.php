@@ -12,6 +12,8 @@ if (!isset($_SESSION['user_id'])) {
 $isEditing = isset($formData['id']);
 
 $formAction = $isEditing ? "/update-expense" : "/add-expense";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -195,24 +197,30 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
         </div>
     </div>
 
-   <div class="perfil-modal">
+   <div class="perfil-modal"> 
         <div class="perfil-content">
             <div class="close">
                 <i class="fa-solid fa-xmark icon-close"></i>
             </div>
-            <form class="perfil-form" action="#" method="POST">
-                <div class="form-header">
-                    <h2>Conta</h2>
-                    <button type="button" class="logout-button">
-                        <i class="fa-solid fa-right-from-bracket"></i> 
-                        Logout
-                    </button>
-                </div>
+            <div class="form-header">
+                <form action="/logout" method="POST" id="logout-form">
+                <button type="submit" class="logout-button">
+                    <i class="fa-solid fa-right-from-bracket"></i> 
+                    Logout
+                </button>
+                </form>
+            </div>
 
+            <form class="perfil-form" action="/updateUserData" method="POST">
                 <div class="form-group">
+                    <h2>Conta</h2>
                     <label for="nome">Nome</label>
                         <div class="input-wrapper">
-                            <input type="text" id="nome" name="nome" placeholder="">
+                            <input 
+                            type="text" 
+                            id="nome" 
+                            name="nome" 
+                            placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
                         </div>
                 </div>
@@ -222,7 +230,11 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                 <div class="form-group">
                     <label for="email">Email</label>
                         <div class="input-wrapper">
-                            <input type="email" name="email" id="email" placeholder="">
+                            <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
 
                         </div>
@@ -231,7 +243,11 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                 <div class="form-group">
                     <label for="celular">Telefone</label>
                         <div class="input-wrapper">
-                            <input type="tel" id="celular" name="celular" placeholder="">
+                            <input
+                             type="tel" 
+                             id="celular" 
+                             name="celular" 
+                             placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
 
                         </div>
@@ -240,7 +256,11 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                 <div class="form-group">
                     <label for="password">Senha</label>
                         <div class="input-wrapper">
-                            <input type="password" id="password" name="password" placeholder="">
+                            <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
 
                         </div>
@@ -261,12 +281,12 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
 
 
 
-    <script>
-    <!-- // ESTA LINHA É O QUE CRIA A VARIÁVEL GLOBAL JS -->
+    
+    <script src="/styles/javaScript/modal.js">
         window.expenseToEdit = <?php echo json_encode($expense_to_edit ?? null); ?>;
+        //Cria a váriavel global para os dados do usuario
+        window.userData = <?php echo json_encode($userData ?? null); ?>;
     </script>
 
-    <script src="/styles/javaScript/modal.js"></script>
-    
 </body>
 </html>

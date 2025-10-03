@@ -40,9 +40,10 @@
 
 .close{
     position: absolute;
-    top: 17px;
+    top: 20px;
     right: 20px;
     cursor: pointer;
+
 }
 
 .close i{
@@ -210,12 +211,9 @@
     gap: 20px;
 }
 
-.form-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.form-header h2,
+
+
+.form-group h2,
 .suporte-area h2{
     font-size: 28px;
 }
@@ -229,6 +227,10 @@
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 60px;
+
 }
 
 .logout-button i{

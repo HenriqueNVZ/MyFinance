@@ -11,6 +11,9 @@
             else if($code == 500){
                 echo 'Erro interno do servidor';
             }
+            elseif($code == 401){
+                echo 'Usuário não autenticado.';
+            }
         }
     }
 ?>

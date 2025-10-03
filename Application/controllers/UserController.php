@@ -57,6 +57,35 @@ class UserController extends Controller{
                 exit;
             }
         }
+        //Buscar dados de usuario e retornar um json 
+        public function getProfileDataJson() {
+            
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            $userId = $_SESSION['user_id'] ?? null;
+            
+            if (!$userId) {
+                //chamar o response 401
+                exit;
+            }
+            
+            $userData = $this->userModel->findById((int) $userId);
+
+            //Define o cabeçalho para o navegador saber que é JSON
+            header('Content-Type: application/json');
+            
+            //Imprime o JSON e encerra a execução
+            echo json_encode($userData);
+            exit;
+        }
+
+        public function updateProfile(){
+            $NewUserData = $_POST;
+
+            $userId = $_SESSION['id'];
+        }
 
     
 

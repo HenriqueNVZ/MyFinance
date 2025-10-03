@@ -47,6 +47,19 @@
             ]);
         }
 
+        public function logout(){
+            if(session_status() === PHP_SESSION_NONE){
+                //Inicia a sessão
+                session_start();
+            }
+                //Limpa todas as variáveis da sessão
+                session_unset();
+                //Destroi a sessão
+                session_destroy();
+                header('Location: /login');
+                exit;
+        }
+
         
     }
 ?>

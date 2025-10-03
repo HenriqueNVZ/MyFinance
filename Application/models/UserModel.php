@@ -160,26 +160,7 @@ use User\MyFinance\core\Database;
             return $data;   
         }
 
-        // public function deleteUserData($userId){
-        //     $query = "DELETE FROM {$this->tableName} WHERE id = :id";
-
-        //     try {
-        //         $stmt = $this->pdo->prepare($query);
-        //         $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
-
-        //         if ($stmt->execute()) {
-        //             // retorna true apenas se realmente deletou alguma linha
-        //             return $stmt->rowCount() > 0;
-        //         }
-
-        //         return false;
-        //     } catch (PDOException $e) {
-        //         echo "Erro ao excluir dados: " . $e->getMessage();
-        //         return false;
-        //     }
-        // }
         
-
         public function deleteUserData($userId){
             try {
                 // Deletar gastos primeiro

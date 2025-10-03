@@ -56,6 +56,11 @@ $router->registerGet('/editExpense', function() use ($dashboardController) {
     echo $dashboardController->showEditExpenseForm($id);
 });
 
+// Rota GET para a API que busca dados do perfil (Endpoint JSON)
+$router->registerGet('/api/profile-data', function() use ($userController) {
+    $userController->getProfileDataJson(); 
+});
+
 // ROTAS POST: Para processar formulários
 //Rota para processar o formulario de login ao clicar em "Entrar"
 $router->registerPost('/login', function() use ($loginController) {
@@ -86,6 +91,14 @@ $router->registerPost('/deleteExpense',function() use ($dashboardController){
 
 $router->registerPost('/deleteUser',function()use ($userController){
     $userController->deleteUser();
+});
+
+$router->registerPost('/logout',function()use ($loginController){
+    $loginController->logout();
+});
+
+$router->registerPost('/updateUserData',function()use ($userController){
+    $userController->
 });
 
 // Resolve a rota
