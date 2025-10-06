@@ -219,7 +219,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                             <input 
                             type="text" 
                             id="nome" 
-                            name="nome" 
+                            name="first_name" 
                             placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
                         </div>
@@ -259,7 +259,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                             <input 
                             type="password" 
                             id="password" 
-                            name="password" 
+                            name="new_password" 
                             placeholder="">
                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
 

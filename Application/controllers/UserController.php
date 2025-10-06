@@ -81,11 +81,47 @@ class UserController extends Controller{
             exit;
         }
 
-        public function updateProfile(){
-            $NewUserData = $_POST;
+        // controller que trata /updateUserData
+        public function updateProfile()
+{
+    // Inicia sessão se ainda não estiver ativa
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-            $userId = $_SESSION['id'];
+    $userId = $_SESSION['user_id'] ?? null;
+
+    // Se não houver usuário logado, redireciona para login
+    if (!$userId) {
+        header('Location: /login');
+        exit;
+    }
+
+    // Pega os dados enviados pelo formulário
+    $NewUserData = $_POST;
+
+    // Atualiza o perfil
+    $result = $this->userModel->updateProfileData($NewUserData, $userId);
+
+    // Redireciona conforme resultado
+    if (!empty($result['errors'])) {
+        // Se houver algum erro, volta para o dashboard com parâmetro de erro
+        if (!empty($result['errors'])) {
+            echo '<pre>';
+            var_dump($result['errors']);
+            echo '</pre>';
+            exit;
         }
+        header('Location: /dashboard?update=error');
+        exit;
+    }
+
+    // Se deu certo, redireciona normalmente
+    header('Location: /dashboard?update=success');
+    exit;
+}
+
+
 
     
 

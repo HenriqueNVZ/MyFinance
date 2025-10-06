@@ -89,7 +89,7 @@ use User\MyFinance\core\Database;
         //Verifica se já existe um Usuario com email,para evitar mais de um usuario com mesmo email
         public function isEmailUnique($email){
             try{
-                $query = ("SELECT COUNT(*) FROM {$this->tableName} WHERE email = :email");
+                $query = "SELECT COUNT(*) FROM {$this->tableName} WHERE email = :email";
                 $stmt = $this->pdo->prepare($query);
                 $stmt->bindParam(":email",$email);
                 $stmt->execute();
@@ -189,5 +189,99 @@ use User\MyFinance\core\Database;
         //     $success = $this->deleteUserData($userId);
         //     return $success;
         // }
+
+
+       public function updateProfileData(array $NewUserData, int $userId){
+        $NewUserData = $this->prepareData($NewUserData);
+        $errors = [];
+
+        // Mapear os campos do form para os campos internos
+        $firstName = $NewUserData['first_name'] ?? null;
+        $email = $NewUserData['email'] ?? null;
+        $celular = $NewUserData['celular'] ?? null;
+        $newPassword = $NewUserData['new_password'] ?? '';
+        $currentEmail = $currentUser['email'] ?? null;
+
+        // Validações básicas
+        if (empty($firstName)) {
+            $errors['first_name'] = "O primeiro nome é obrigatório.";
+        }
+
+        if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "O formato do e-mail é inválido.";
+        }
+
+        // Validação da senha (só se o usuário preencheu nova senha)
+        if (!empty($newPassword)) {
+            $passwordErrors = $this->validatePasswordUpdate([
+                'current_password' => $NewUserData['current_password'] ?? '',
+                'new_password' => $newPassword
+            ], $userId);
+
+            $errors = array_merge($errors, $passwordErrors);
+        }
+
+        // Se houver erros, retorna array com erros
+        if (!empty($errors)) {
+            return ['errors' => $errors];
+        }
+
+        // Preparar dados para atualizar
+        $dataToUpdate = [
+            'first_name' => $firstName,
+            'email' => $email,
+            'celular' => $celular,
+        ];
+
+        if (!empty($newPassword)) {
+            $dataToUpdate['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+
+        // Executa update
+        $success = $this->update($userId, $dataToUpdate);
+
+        if ($success) {
+            return ['success' => true];
+        } else {
+            return ['errors' => ['database' => 'Falha ao atualizar o perfil.']];
+        }
     }
+
+
+   protected function validatePasswordUpdate(array $passwords, int $userId): array
+{
+    $errors = [];
+    $currentUser = $this->findById($userId);
+
+    $newPassword = $passwords['new_password'] ?? '';
+    $currentPassword = $passwords['current_password'] ?? '';
+
+    // 1. CHECAGEM CRÍTICA: Se o usuário está tentando mudar a senha
+    if (!empty($newPassword)) {
+        
+         if (!$this->isPasswordStrong($newPassword)) {
+        $errors['new_password'] = "A nova senha não atende aos requisitos de segurança.";
+    }
+    }
+    // NOTA: A checagem de "As senhas não coincidem" foi removida, conforme sua simplificação anterior.
+
+    return $errors;
+}
+protected function splitFullName(string $nome): array
+{
+    $nome = trim($nome);
+    $parts = preg_split('/\s+/', $nome); // quebra por espaços, ignora múltiplos
+
+    $firstName = array_shift($parts); // primeiro nome
+    $lastName = !empty($parts) ? implode(' ', $parts) : null; // o resto como sobrenome
+
+    return [
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+    ];
+}
+
+
+}
+
 ?>

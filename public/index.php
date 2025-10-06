@@ -98,7 +98,7 @@ $router->registerPost('/logout',function()use ($loginController){
 });
 
 $router->registerPost('/updateUserData',function()use ($userController){
-    $userController->
+    $userController->updateProfile();
 });
 
 // Resolve a rota

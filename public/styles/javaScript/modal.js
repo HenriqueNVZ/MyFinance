@@ -139,7 +139,7 @@ perfilIcon.addEventListener("click", (event) => {
         })
         .then(userData => {
             // ... lógica para preencher os inputs do modal com userData.nome, etc. ...
-            inputName.value = userData['first_name'] + " " + userData['last_name'];
+            inputName.value = userData['first_name'];
             inputEmail.value = userData['email'];
             inputCelular.value = userData['celular'];   
             ModalPerfil.classList.add('active'); 
