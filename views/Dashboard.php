@@ -63,7 +63,7 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
                             <tr>
                                 <!-- HTMLSPECIALCHARS previne ataques de injeção de código XSS -->
                                 <td> <?= htmlspecialchars($expense['categoria'])?> </td>
-                                <td> <?= htmlspecialchars($expense['valor'])?> </td>
+                                <td> <?=  "R$". htmlspecialchars($expense['valor'])?> </td>
                                 <td> <?= htmlspecialchars($expense['descricao'])?> </td>
                                 <td> <?= htmlspecialchars($expense['data_gasto']) ?></td>
                                 
@@ -282,11 +282,14 @@ $formAction = $isEditing ? "/update-expense" : "/add-expense";
 
 
     
-    <script src="/styles/javaScript/modal.js">
-        window.expenseToEdit = <?php echo json_encode($expense_to_edit ?? null); ?>;
-        //Cria a váriavel global para os dados do usuario
-        window.userData = <?php echo json_encode($userData ?? null); ?>;
-    </script>
+    
+<script>
+    window.expenseToEdit = <?= json_encode($expense_to_edit ?? null); ?>;
+    window.userData = <?= json_encode($userData ?? null); ?>;
+</script>
+
+<script src="/styles/javaScript/modal.js"></script>
+
 
 </body>
 </html>

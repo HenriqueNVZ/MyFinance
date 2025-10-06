@@ -248,39 +248,35 @@ use User\MyFinance\core\Database;
     }
 
 
-   protected function validatePasswordUpdate(array $passwords, int $userId): array
-{
-    $errors = [];
-    $currentUser = $this->findById($userId);
+        protected function validatePasswordUpdate(array $passwords, int $userId): array{
+            $errors = [];
+            $currentUser = $this->findById($userId);
 
-    $newPassword = $passwords['new_password'] ?? '';
-    $currentPassword = $passwords['current_password'] ?? '';
+            $newPassword = $passwords['new_password'] ?? '';
+            $currentPassword = $passwords['current_password'] ?? '';
 
-    // 1. CHECAGEM CRÍTICA: Se o usuário está tentando mudar a senha
-    if (!empty($newPassword)) {
-        
-         if (!$this->isPasswordStrong($newPassword)) {
-        $errors['new_password'] = "A nova senha não atende aos requisitos de segurança.";
+            // 1. CHECAGEM CRÍTICA: Se o usuário está tentando mudar a senha
+            if (!empty($newPassword)) {
+                
+                if (!$this->isPasswordStrong($newPassword)) {
+                $errors['new_password'] = "A nova senha não atende aos requisitos de segurança.";
+                }
+            }
+
+            return $errors;
+        }
+
+        protected function splitFullName(string $nome): array{
+            $nome = trim($nome);
+            $parts = preg_split('/\s+/', $nome); // quebra por espaços, ignora múltiplos
+
+            $firstName = array_shift($parts); // primeiro nome
+            $lastName = !empty($parts) ? implode(' ', $parts) : null; // o resto como sobrenome
+
+            return [
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+            ];
+        }
     }
-    }
-
-    return $errors;
-}
-protected function splitFullName(string $nome): array
-{
-    $nome = trim($nome);
-    $parts = preg_split('/\s+/', $nome); // quebra por espaços, ignora múltiplos
-
-    $firstName = array_shift($parts); // primeiro nome
-    $lastName = !empty($parts) ? implode(' ', $parts) : null; // o resto como sobrenome
-
-    return [
-        'first_name' => $firstName,
-        'last_name' => $lastName,
-    ];
-}
-
-
-}
-
 ?>

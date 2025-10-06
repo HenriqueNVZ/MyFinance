@@ -102,9 +102,7 @@ body{
     
 }
 .createAccount span{
-    text-decoration: underline;
-    text-decoration-color:#28A745 ;
-    text-decoration-thickness: 2px;
+    color:#28A745 ;
 }
 .titulo-login {
     color: #333; 
