@@ -263,7 +263,6 @@ use User\MyFinance\core\Database;
         $errors['new_password'] = "A nova senha não atende aos requisitos de segurança.";
     }
     }
-    // NOTA: A checagem de "As senhas não coincidem" foi removida, conforme sua simplificação anterior.
 
     return $errors;
 }
